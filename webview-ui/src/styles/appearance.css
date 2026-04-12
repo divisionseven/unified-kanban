@@ -1,0 +1,5 @@
+/**
+ * Dynamic CSS variable overrides based on board settings.
+ * These rules use specific selectors to override tokens.css defaults
+ * when custom accent color is configured.
+ */

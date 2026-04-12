@@ -1,0 +1,384 @@
+{
+  "name": "unified-kanban",
+  "displayName": "Unified Kanban",
+  "publisher": "divisionseven",
+  "version": "0.6.0",
+  "description": "Unifying kanban syntax for markdown — one board format, beautiful results across Obsidian and VS Code",
+  "license": "MIT",
+  "main": "./dist/extension.js",
+  "icon": "icon.png",
+  "author": "Division 7",
+  "activationEvents": [],
+  "files": [
+    "dist/",
+    "icon.png",
+    "LICENSE.md"
+  ],
+  "galleryBanner": {
+    "color": "#8A2BE2",
+    "theme": "dark"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "vs code extension",
+    "visual studio code extension",
+    "kanban",
+    "board",
+    "obsidian",
+    "markdown",
+    "todo",
+    "task",
+    "project management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unified-kanban/vscode-kanban"
+  },
+  "bugs": {
+    "url": "https://github.com/unified-kanban/vscode-kanban/issues"
+  },
+  "homepage": "https://github.com/unified-kanban/vscode-kanban",
+  "qna": "marketplace",
+  "markdown": "github",
+  "pricing": "Free",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:all": "npm test && cd webview-ui && npx vitest run",
+    "build:webview": "cd webview-ui && npx vite build",
+    "build:extension": "tsc -p tsconfig.extension.json",
+    "build": "npm run build:webview && npm run build:extension",
+    "watch": "tsc -p tsconfig.extension.json --watch",
+    "check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "vscode:prepublish": "npm run build"
+  },
+  "exports": {
+    "./parser": {
+      "require": "./dist/parser/index.js",
+      "types": "./dist/parser/index.d.ts"
+    }
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "vscode-kanban.kanbanEditor",
+        "displayName": "Kanban Board",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "commands": [
+      {
+        "command": "kanban.openAsText",
+        "title": "Open as Text",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.newBoard",
+        "title": "New Board",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.archiveDoneCards",
+        "title": "Archive Done Cards",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.toggleKanbanView",
+        "title": "Toggle Kanban View",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.convertToKanban",
+        "title": "Convert to Kanban",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.addKanbanLane",
+        "title": "Add Kanban Lane",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.viewBoard",
+        "title": "View as Board",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.viewTable",
+        "title": "View as Table",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.viewList",
+        "title": "View as List",
+        "category": "Kanban"
+      },
+      {
+        "command": "kanban.openBoardSettings",
+        "title": "Open Board Settings",
+        "category": "Kanban"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "kanban.newBoard",
+        "key": "ctrl+shift+n",
+        "mac": "cmd+shift+n",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "kanban.archiveDoneCards",
+        "key": "ctrl+shift+a",
+        "mac": "cmd+shift+a",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "kanban.openBoardSettings",
+        "key": "ctrl+shift+,",
+        "mac": "cmd+shift+,",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "kanban.toggleKanbanView",
+        "key": "ctrl+shift+k",
+        "mac": "cmd+shift+k",
+        "when": "editorTextFocus"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "kanban.openAsText",
+          "when": "resourceExtname == .md",
+          "group": "1_open"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Unified Kanban",
+      "properties": {
+        "kanban.defaultLaneWidth": {
+          "type": "number",
+          "default": 270,
+          "minimum": 150,
+          "maximum": 600,
+          "description": "Default column width in pixels for new boards."
+        },
+        "kanban.defaultDateFormat": {
+          "type": "string",
+          "default": "YYYY-MM-DD",
+          "description": "Default date display format (supports YYYY, MM, DD)."
+        },
+        "kanban.defaultTimeFormat": {
+          "type": "string",
+          "default": "HH:mm",
+          "description": "Default time display format."
+        },
+        "kanban.prependNewCards": {
+          "type": "boolean",
+          "default": false,
+          "description": "[Deprecated] Use kanban.newCardInsertionMethod instead. When true, new cards are added to the top of the column."
+        },
+        "kanban.showCheckboxes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show checkboxes on cards."
+        },
+        "kanban.newCardInsertionMethod": {
+          "type": "string",
+          "enum": [
+            "prepend",
+            "prepend-compact",
+            "append"
+          ],
+          "default": "append",
+          "description": "How new cards are inserted into columns. 'prepend' adds to top, 'prepend-compact' adds to top (compact), 'append' adds to bottom."
+        },
+        "kanban.hideCardCount": {
+          "type": "boolean",
+          "default": false,
+          "description": "Hide the card count badge on column headers."
+        },
+        "kanban.accentColor": {
+          "type": "string",
+          "default": "",
+          "description": "Custom accent color for badges and highlights (hex format, e.g., #ff6600). When empty, uses VS Code native colors."
+        },
+        "kanban.moveTags": {
+          "type": "boolean",
+          "default": true,
+          "description": "Extract tags from card text and display them as metadata."
+        },
+        "kanban.tagAction": {
+          "type": "string",
+          "enum": [
+            "kanban",
+            "obsidian"
+          ],
+          "default": "obsidian",
+          "description": "Action when clicking a tag. 'kanban' filters by tag, 'obsidian' opens Obsidian search."
+        },
+        "kanban.moveDates": {
+          "type": "boolean",
+          "default": true,
+          "description": "Extract dates from card text and display them as metadata."
+        },
+        "kanban.dateTrigger": {
+          "type": "string",
+          "default": "@",
+          "description": "Character that triggers date autocomplete in card editing."
+        },
+        "kanban.timeTrigger": {
+          "type": "string",
+          "default": "@",
+          "description": "Character that triggers time autocomplete in card editing."
+        },
+        "kanban.dateDisplayFormat": {
+          "type": "string",
+          "default": "YYYY-MM-DD",
+          "description": "Format for displaying dates on cards."
+        },
+        "kanban.showRelativeDate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show dates as relative (e.g., 'in 3 days') instead of absolute."
+        },
+        "kanban.linkDateToDailyNote": {
+          "type": "boolean",
+          "default": false,
+          "description": "Make date metadata links to daily notes."
+        },
+        "kanban.datePickerWeekStart": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 6,
+          "description": "Day of week the date picker starts on (0=Sunday, 1=Monday, etc.)."
+        },
+        "kanban.archiveWithDate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Add a date stamp when archiving cards."
+        },
+        "kanban.appendArchiveDate": {
+          "type": "boolean",
+          "default": false,
+          "description": "Append date to the end of archived card text (vs. inserting inline)."
+        },
+        "kanban.archiveDateSeparator": {
+          "type": "string",
+          "default": " ",
+          "description": "Separator between card text and archive date."
+        },
+        "kanban.archiveDateFormat": {
+          "type": "string",
+          "default": "YYYY-MM-DD",
+          "description": "Date format for archive date stamps."
+        },
+        "kanban.maxArchiveSize": {
+          "type": "number",
+          "default": -1,
+          "description": "Maximum number of cards in archive section. -1 for unlimited."
+        },
+        "kanban.inlineMetadataPosition": {
+          "type": "string",
+          "enum": [
+            "body",
+            "footer",
+            "metadata-table"
+          ],
+          "default": "body",
+          "description": "Where to display inline metadata (Dataview fields) on cards."
+        },
+        "kanban.moveTaskMetadata": {
+          "type": "boolean",
+          "default": true,
+          "description": "Extract Obsidian Tasks metadata (priority, dates, recurrence) from card text."
+        },
+        "kanban.newNoteTemplate": {
+          "type": "string",
+          "default": "",
+          "description": "Template content for new notes created from cards."
+        },
+        "kanban.newNoteFolder": {
+          "type": "string",
+          "default": "",
+          "description": "Folder path for new notes created from cards."
+        },
+        "kanban.showAddList": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 'Add List' button in the board header."
+        },
+        "kanban.showArchiveAll": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 'Archive All' button in the board header."
+        },
+        "kanban.showViewAsMarkdown": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 'View as Markdown' button in the board header."
+        },
+        "kanban.showBoardSettings": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the board settings button in the board header."
+        },
+        "kanban.showSearch": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the search button in the board header."
+        },
+        "kanban.showSetView": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the set view button in the board header."
+        }
+      }
+    }
+  },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/parser": "^8.58.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/coverage-v8": "^4.1.4",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "prettier": "^3.8.1",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.2"
+  },
+  "dependencies": {
+    "mdast": "^2.3.2",
+    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-frontmatter": "^2.0.0",
+    "mdast-util-to-string": "^3.0.0",
+    "micromark-extension-frontmatter": "^2.0.0",
+    "unist-util-visit": "^5.1.0"
+  }
+}

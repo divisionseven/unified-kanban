@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["vitest/globals"]
+  },
+  "include": ["src", "../src/**/*.ts"],
+  "exclude": ["../src/**/*.test.ts", "../src/extension.ts", "../src/KanbanEditorProvider.ts"]
+}

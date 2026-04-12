@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "lib": ["ES2022"],
+    "sourceMap": true,
+    "strict": true,
+    "types": ["vscode", "node"],
+    "skipLibCheck": true
+  },
+  "include": ["src/extension.ts", "src/KanbanEditorProvider.ts", "src/messages.ts", "src/parser/index.ts", "src/parser/types.ts", "src/parser/parse.ts", "src/parser/serialize.ts"],
+  "exclude": ["src/parser/**/*.test.ts"]
+}

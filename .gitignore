@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing & Coverage
+coverage/
+.vitest/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDEs & Editors
+.vscode/
+.vscode-test/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Vite
+.vite/
+
+# npm
+.npmrc
+
+# Logs
+*.log
+logs/
+
+# Tools
+.ckb/
+.srclight/
+.codebase-index-cache.pkl
+index.scip
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.vsix
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettiercache
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Project-Specific Internal Files
+TODO.md
+plans/*
+internal_documentation/*

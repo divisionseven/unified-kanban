@@ -1,0 +1,58 @@
+/**
+ * Design tokens mapping VS Code CSS variables to kanban-specific variables.
+ * All values reference VS Code's built-in theme variables so the board
+ * automatically adapts to light/dark/high-contrast themes.
+ */
+
+:root {
+  /* Backgrounds */
+  --kanban-bg: var(--vscode-editor-background);
+  --kanban-column-bg: var(--vscode-sideBar-background, var(--vscode-editorWidget-background));
+  --kanban-card-bg: var(--vscode-editor-background);
+  --kanban-card-hover-bg: var(--vscode-list-hoverBackground);
+
+  /* Text */
+  --kanban-text: var(--vscode-foreground);
+  --kanban-text-secondary: var(--vscode-descriptionForeground);
+  --kanban-text-muted: var(--vscode-input-placeholderForeground);
+
+  /* Borders */
+  --kanban-border: var(--vscode-panel-border);
+  --kanban-card-border: var(--vscode-editorWidget-border);
+
+  /* Accents */
+  --kanban-accent: var(--vscode-focusBorder);
+
+  /* Badge colors — custom accent with VS Code native fallbacks */
+  --kanban-badge-bg: var(
+    --board-accent-color,
+    var(--vscode-badge-background, var(--vscode-focusBorder, #007acc))
+  );
+  --kanban-badge-text: var(--vscode-badge-foreground, #fff);
+
+  /* Sizing */
+  --kanban-column-width: 270px;
+  --kanban-column-gap: 12px;
+  --kanban-card-radius: 6px;
+  --kanban-card-padding: 10px 12px;
+  --kanban-input-width: 120px;
+
+  /* Due date colors */
+  --kanban-due-far: var(--vscode-charts-green, #89d185);
+  --kanban-due-soon: var(--vscode-charts-yellow, #e5c07b);
+  --kanban-due-overdue: var(--vscode-charts-red, #e06c75);
+
+  /* Dropdown/card shadows */
+  --kanban-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  /**
+   * Priority colors for table view badges.
+   * Use dark text (#1a1a1a) for WCAG AA contrast on orange/green/blue,
+   * white text on red/blue where background is dark enough.
+   */
+  --kanban-priority-0: #c53030;
+  --kanban-priority-1: #dd6b20;
+  --kanban-priority-2: #d69e2e;
+  --kanban-priority-3: #38a169;
+  --kanban-priority-4: #1e40af;
+}

@@ -1,0 +1,1610 @@
+/* Board layout */
+.board {
+  display: flex;
+  gap: var(--kanban-column-gap);
+  padding: 16px;
+  overflow-x: auto;
+  height: 100vh;
+  align-items: flex-start;
+  background: var(--kanban-bg);
+  color: var(--kanban-text);
+  box-sizing: border-box;
+}
+
+/* Focus visible — keyboard navigation indicator */
+:focus-visible {
+  outline: 2px solid var(--kanban-accent, var(--vscode-focusBorder, #007acc));
+  outline-offset: 2px;
+}
+
+/* Remove outline for mouse users (keep for keyboard) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Portal dropdown overlay — click-outside to close */
+.portal-dropdown-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 199;
+  background: transparent;
+  transition: background-color 150ms ease-out;
+}
+
+/* Portal dropdown container — handles fixed positioning */
+.portal-dropdown {
+  position: fixed;
+  z-index: 200;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 150ms ease-out,
+    transform 150ms ease-out;
+}
+
+/* Dropdown entrance animation */
+@keyframes dropdown-open {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.portal-dropdown {
+  animation: dropdown-open 150ms ease-out;
+}
+
+/* Reduced motion override for dropdowns */
+@media (prefers-reduced-motion: reduce) {
+  .portal-dropdown {
+    animation: none;
+    transition: none;
+  }
+
+  .portal-dropdown-overlay {
+    transition: none;
+  }
+}
+
+/* Column */
+.column {
+  min-width: var(--kanban-column-width);
+  max-width: var(--kanban-column-width);
+  background: var(--kanban-column-bg);
+  border: 1px solid var(--kanban-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.column-header {
+  padding: 12px 14px 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid var(--kanban-border);
+  cursor: grab;
+}
+
+.column-title {
+  font-weight: 600;
+  font-size: 13px;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--kanban-text);
+}
+
+.column-count {
+  background: var(--kanban-badge-bg);
+  color: #fff;
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-left: 8px;
+  margin-right: 4px;
+}
+
+.column-cards {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 80px;
+}
+
+/* Card */
+.card {
+  background: var(--kanban-card-bg);
+  border: 1px solid var(--kanban-card-border);
+  border-radius: var(--kanban-card-radius);
+  padding: var(--kanban-card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: default;
+  transition: background 0.1s;
+}
+
+.card:hover {
+  background: var(--kanban-card-hover-bg);
+}
+
+.card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.card-checkbox {
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--kanban-accent);
+}
+
+.card-text {
+  font-size: 13px;
+  line-height: 1.45;
+  word-break: break-word;
+  overflow-x: hidden;
+}
+
+.card-text.checked {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.card-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-left: 22px;
+}
+
+.metadata-chip {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: var(--kanban-badge-bg);
+  color: #fff;
+}
+
+/* Drag states — card */
+.card.dragging {
+  opacity: 0.4;
+  box-shadow: none;
+}
+
+.card.drag-overlay {
+  box-shadow: var(--kanban-shadow);
+  cursor: grabbing;
+  z-index: 100;
+  background: var(--kanban-card-bg);
+}
+
+/* Drag states — column */
+.column.dragging {
+  opacity: 0.5;
+}
+
+.column.dragging .column-header {
+  cursor: grabbing;
+}
+
+/* Drop indicator */
+.column-cards.drag-over {
+  background: var(--vscode-list-dropBackground, var(--vscode-editor-selectionBackground));
+  border-radius: 4px;
+}
+
+/* Drag cursor on grabbable elements */
+.card:not(.dragging) {
+  cursor: grab;
+}
+
+/* Card menu */
+.card-menu {
+  position: relative;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.card:not(:hover) .card-menu {
+  visibility: hidden;
+}
+
+.card-menu-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--kanban-text);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+.card-menu-trigger:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+}
+
+.card-menu-trigger:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  outline-offset: 1px;
+}
+
+.card-menu-dropdown {
+  min-width: 140px;
+  background: var(--kanban-card-bg);
+  border: 1px solid var(--kanban-border);
+  border-radius: 6px;
+  box-shadow: var(--kanban-shadow);
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-menu-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  text-align: left;
+  font-size: 12px;
+  color: var(--kanban-text);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-menu-item svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.card-menu-item:hover {
+  background: var(--kanban-badge-bg);
+}
+
+.card-menu-item:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  outline-offset: -2px;
+}
+
+/* Card menu separator */
+.card-menu-separator {
+  height: 1px;
+  background: var(--kanban-border);
+  margin: 4px 0;
+}
+
+/* Card menu label (non-interactive section header) */
+.card-menu-label {
+  padding: 4px 12px 2px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--kanban-text-muted);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Submenu items (indented under label) */
+.card-menu-subitem {
+  padding-left: 20px;
+  font-size: 12px;
+}
+
+/* Danger menu item (Delete) */
+.card-menu-item-danger {
+  color: var(--vscode-errorForeground, #f44747);
+}
+
+/* Inline edit textarea */
+.card-edit-textarea,
+.add-card-textarea {
+  width: 100%;
+  min-height: 28px;
+  padding: 6px 8px;
+  border: 1px solid var(--kanban-accent);
+  border-radius: 4px;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text);
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.45;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.card-edit-textarea:focus,
+.add-card-textarea:focus {
+  box-shadow: 0 0 0 2px var(--kanban-accent);
+}
+
+/* Add card button */
+.add-card-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  text-align: left;
+  font-size: 12px;
+  color: var(--kanban-text);
+  opacity: 0.5;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.add-card-button:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+}
+
+.add-card-button:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  background: var(--kanban-card-hover-bg);
+}
+
+/* Card editing state — disable grab cursor */
+.card.editing {
+  cursor: default;
+}
+
+/* Column menu */
+.column-menu {
+  position: relative;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.column-header:not(:hover) .column-menu {
+  visibility: hidden;
+}
+
+.column-menu-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--kanban-text);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+.column-menu-trigger:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+}
+
+.column-menu-trigger:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  outline-offset: 1px;
+}
+
+.column-menu-dropdown {
+  min-width: 140px;
+  background: var(--kanban-card-bg);
+  border: 1px solid var(--kanban-border);
+  border-radius: 6px;
+  box-shadow: var(--kanban-shadow);
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-menu-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  text-align: left;
+  font-size: 12px;
+  color: var(--kanban-text);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.column-menu-item svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+}
+
+.column-menu-item:hover {
+  background: var(--kanban-badge-bg);
+}
+
+.column-menu-item:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  outline-offset: -2px;
+}
+
+/* Column menu separator */
+.column-menu-separator {
+  height: 1px;
+  background: var(--kanban-border);
+  margin: 4px 0;
+}
+
+/* Column menu danger item (Delete) */
+.column-menu-item-danger {
+  color: var(--vscode-errorForeground, #f44747);
+}
+
+/* Sort submenu */
+.sort-submenu {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid var(--kanban-accent);
+  margin-left: 8px;
+  padding-left: 4px;
+}
+
+/* Column title editing */
+.column-title-edit {
+  width: 100%;
+  min-height: 28px;
+  padding: 4px 8px;
+  border: 1px solid var(--kanban-accent);
+  border-radius: 4px;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  line-height: 1.45;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.column-title-edit:focus {
+  box-shadow: 0 0 0 2px var(--kanban-accent);
+}
+
+/* Column title — editing state disables drag cursor */
+.column-header:has(.column-title-edit) {
+  cursor: default;
+}
+
+/* Complete column indicator */
+.column-title.complete {
+  color: var(--kanban-accent);
+}
+
+.column-complete-badge {
+  margin-left: 4px;
+  font-size: 11px;
+}
+
+/* Add column button */
+.add-column-button {
+  background: none;
+  border: 1px dashed var(--kanban-border);
+  cursor: pointer;
+  padding: 12px 24px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--kanban-text);
+  opacity: 0.5;
+  border-radius: 8px;
+  min-width: var(--kanban-column-width);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.add-column-button:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+  border-color: var(--kanban-accent);
+}
+
+.add-column-button:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  opacity: 1;
+}
+
+/* Board wrapper */
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--kanban-bg);
+  color: var(--kanban-text);
+}
+
+/* Board header toolbar */
+.board-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--kanban-border);
+  flex-shrink: 0;
+}
+
+/* Board title */
+.board-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 12px;
+  color: var(--kanban-text);
+}
+
+/* Generic toolbar button */
+.toolbar-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 1;
+  color: var(--kanban-text);
+  opacity: 0.6;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-button:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+}
+
+.toolbar-button:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  opacity: 1;
+}
+
+/* View switcher — container + dropdown */
+.view-switcher {
+  position: relative;
+}
+
+.view-switcher-dropdown {
+  min-width: 120px;
+  background: var(--kanban-card-bg);
+  border: 1px solid var(--kanban-border);
+  border-radius: 6px;
+  box-shadow: var(--kanban-shadow);
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-switcher-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  text-align: left;
+  font-size: 12px;
+  color: var(--kanban-text);
+  white-space: nowrap;
+}
+
+.view-switcher-item:hover {
+  background: var(--kanban-badge-bg);
+}
+
+.view-switcher-item:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+}
+
+.view-switcher-item.active {
+  color: var(--kanban-accent);
+  font-weight: 600;
+}
+
+/* Search bar — below header */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--kanban-border);
+  background: var(--kanban-column-bg);
+}
+
+.search-input {
+  flex: 1;
+  padding: 4px 8px;
+  border: 1px solid var(--kanban-border);
+  border-radius: 4px;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text);
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: var(--kanban-accent);
+  box-shadow: 0 0 0 2px var(--kanban-accent);
+}
+
+.search-clear {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: var(--kanban-text);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+.search-clear:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+}
+
+.search-clear:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  opacity: 1;
+}
+
+/* Search-dimmed card — non-matching during filter */
+.card.search-dimmed {
+  opacity: 0.3;
+}
+
+/* Settings panel */
+.settings-panel {
+  padding: 12px 16px;
+  background: var(--kanban-column-bg);
+  border-bottom: 1px solid var(--kanban-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-field label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--kanban-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.settings-field input[type="number"],
+.settings-field input[type="text"] {
+  padding: 4px 8px;
+  border: 1px solid var(--kanban-border);
+  border-radius: 4px;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text);
+  font-size: 12px;
+  font-family: inherit;
+  width: var(--kanban-input-width, 120px);
+  min-width: 80px;
+  outline: none;
+}
+
+.settings-field input:focus {
+  border-color: var(--kanban-accent);
+  box-shadow: 0 0 0 2px var(--kanban-accent);
+}
+
+.settings-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.settings-save-button,
+.settings-cancel-button {
+  padding: 4px 12px;
+  border: 1px solid var(--kanban-border);
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text);
+}
+
+.settings-save-button {
+  background: var(--kanban-badge-bg);
+  color: var(--kanban-badge-text);
+  border-color: var(--kanban-badge-bg);
+}
+
+.settings-save-button:hover {
+  opacity: 0.9;
+}
+
+.settings-save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text-muted);
+  border-color: var(--kanban-border);
+}
+
+.settings-cancel-button:hover {
+  background: var(--kanban-badge-bg);
+}
+
+.settings-save-button:focus-visible,
+.settings-cancel-button:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+}
+
+/* Accent color picker in settings */
+.accent-color-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.accent-color-input-row input[type="color"] {
+  width: 36px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--kanban-border);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accent-color-input-row input[type="text"] {
+  flex: 1;
+  min-width: 180px;
+}
+
+.accent-color-clear {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--kanban-text-muted);
+  font-size: 12px;
+}
+
+.accent-color-clear:hover {
+  color: var(--kanban-text);
+}
+
+.settings-field-hint {
+  font-size: 11px;
+  font-weight: normal;
+  color: var(--kanban-text-muted);
+  margin-top: 4px;
+}
+
+/* Tag badge */
+.tag-badge {
+  background: var(--kanban-badge-bg);
+  color: #fff;
+  border-radius: 3px;
+  font-weight: 500;
+}
+
+/* Tag filter bar — active tag filter display */
+.tag-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--kanban-border);
+  background: var(--kanban-column-bg);
+}
+
+.tag-filter-label {
+  font-size: 12px;
+  color: var(--kanban-text);
+}
+
+.tag-filter-tag {
+  font-weight: 600;
+  color: var(--kanban-accent);
+}
+
+.tag-filter-dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: var(--kanban-text);
+  opacity: 0.5;
+  border-radius: 4px;
+}
+
+.tag-filter-dismiss:hover {
+  opacity: 1;
+  background: var(--kanban-badge-bg);
+}
+
+.tag-filter-dismiss:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+  opacity: 1;
+}
+
+/* Card footer tags — when move-tags is true */
+.card-footer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--kanban-border);
+  margin-top: 4px;
+}
+
+/* Tag badge — clickable when tag-action is kanban */
+.tag-badge[role="button"] {
+  cursor: pointer;
+}
+
+.tag-badge[role="button"]:hover {
+  filter: brightness(1.15);
+}
+
+/* Settings panel — tag color/sort rows */
+.tag-color-row,
+.tag-sort-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tag-color-key,
+.tag-sort-key {
+  font-size: 11px;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.tag-color-add,
+.tag-sort-add {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.tag-color-add input[type="text"],
+.tag-sort-add input[type="text"] {
+  width: 80px;
+  padding: 2px 6px;
+  font-size: 11px;
+}
+
+.tag-color-remove,
+.tag-sort-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 11px;
+  color: var(--kanban-text-muted);
+}
+
+.tag-sort-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.tag-sort-buttons button {
+  background: none;
+  border: 1px solid var(--kanban-border);
+  cursor: pointer;
+  padding: 1px 4px;
+  font-size: 10px;
+  color: var(--kanban-text);
+  border-radius: 2px;
+}
+
+.tag-sort-buttons button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.settings-field-full {
+  flex-basis: 100%;
+}
+
+/* Due date chips */
+.metadata-chip.due-far {
+  background: var(--kanban-due-far);
+  color: #1a1a1a;
+}
+
+.metadata-chip.due-soon {
+  background: var(--kanban-due-soon);
+  color: #000;
+}
+
+.metadata-chip.due-overdue {
+  background: var(--kanban-due-overdue);
+  color: #1a1a1a;
+}
+
+/* Checkbox hidden state */
+.card-checkbox.hidden {
+  display: none;
+}
+
+/* Priority indicator — subtle, before card text */
+.priority-indicator {
+  font-size: 12px;
+  flex-shrink: 0;
+  line-height: 1.45;
+  margin-top: 1px;
+}
+
+/* Task date chips — 🛫➕⏳📅✅❌ */
+.card-metadata .metadata-chip.task-date {
+  font-size: 11px;
+}
+
+/* Recurrence chip */
+.card-metadata .metadata-chip.recurrence {
+  font-size: 11px;
+}
+
+/* Block ID — monospace, muted */
+.card-metadata .metadata-chip.block-id {
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--kanban-text-muted);
+}
+
+/* Dataview inline metadata chip */
+.card-metadata .metadata-chip.inline-meta {
+  font-size: 11px;
+  font-style: italic;
+}
+
+/* Empty column placeholder */
+.column-empty {
+  text-align: center;
+  padding: 16px 8px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--kanban-text-muted);
+}
+
+/* Settings sections */
+.settings-section {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--kanban-border);
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.settings-section:last-of-type {
+  border-bottom: none;
+}
+
+.settings-section-title {
+  flex-basis: 100%;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--kanban-text-secondary);
+  margin: 0 0 4px 0;
+}
+
+.settings-field select {
+  padding: 4px 8px;
+  border: 1px solid var(--kanban-border);
+  border-radius: 4px;
+  background: var(--kanban-card-bg);
+  color: var(--kanban-text);
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.settings-field select:focus {
+  border-color: var(--kanban-accent);
+  box-shadow: 0 0 0 2px var(--kanban-accent);
+}
+
+/* ─── Table View ─────────────────────────────────────────────────────────── */
+
+.table-view {
+  overflow-x: auto;
+  padding: 8px;
+}
+
+.kanban-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.table-header {
+  background: var(--vscode-editor-background, #1e1e1e);
+  border-bottom: 1px solid var(--vscode-editorWidget-border, #454545);
+  padding: 8px;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.table-header:hover {
+  background: var(--vscode-editorWidget-background, #252526);
+}
+
+.table-header-content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.table-resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  cursor: col-resize;
+  background: transparent;
+}
+
+.table-resize-handle:hover {
+  background: var(--vscode-focusBorder, #007acc);
+}
+
+.table-row {
+  border-bottom: 1px solid var(--vscode-editorWidget-border, #454545);
+}
+
+.table-row:hover {
+  background: var(--vscode-editorWidget-hoverBackground, #252526);
+}
+
+.table-cell {
+  padding: 8px;
+  vertical-align: top;
+}
+
+.table-cell-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.table-checkbox {
+  margin-top: 3px;
+}
+
+.table-cell-list {
+  font-weight: 500;
+  color: var(--vscode-editorLink-activeLinkForeground, #3794ff);
+}
+
+.table-cell-date {
+  font-family: monospace;
+}
+
+.table-cell-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.table-tag {
+  background: var(--vscode-tagBackground, #363636);
+  color: var(--kanban-text, var(--vscode-foreground, #e0e0e0));
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.table-priority {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.priority-0 {
+  background: var(--kanban-priority-0);
+  color: #fff;
+}
+.priority-1 {
+  background: var(--kanban-priority-1);
+  color: #1a1a1a;
+}
+.priority-2 {
+  background: var(--kanban-priority-2);
+  color: #1a1a1a;
+}
+.priority-3 {
+  background: var(--kanban-priority-3);
+  color: #1a1a1a;
+}
+.priority-4 {
+  background: var(--kanban-priority-4);
+  color: #fff;
+}
+
+.table-cell-empty {
+  color: var(--vscode-disabledForeground, #6b6b6b);
+  font-style: italic;
+}
+
+.table-cell-metadata {
+  font-family: monospace;
+}
+
+.table-empty {
+  text-align: center;
+  padding: 40px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--kanban-text-muted);
+}
+
+/* Metadata table empty state */
+.metadata-table-empty {
+  padding: 8px;
+}
+
+.metadata-table-empty-text {
+  font-size: 11px;
+  font-style: italic;
+  color: var(--kanban-text-muted);
+}
+
+/* ─── List View ─────────────────────────────────────────────────────────── */
+
+.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  overflow-y: auto;
+  height: 100vh;
+  background: var(--kanban-bg);
+  color: var(--kanban-text);
+  box-sizing: border-box;
+}
+
+.list-column {
+  background: var(--kanban-column-bg);
+  border: 1px solid var(--kanban-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list-column.full-width {
+  width: 100%;
+}
+
+.list-column-header {
+  padding: 12px 14px 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid var(--kanban-border);
+  cursor: grab;
+}
+
+.list-column-header.collapsed {
+  border-bottom: none;
+}
+
+.list-column-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--kanban-text);
+}
+
+.list-column-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: var(--kanban-text);
+  margin-right: 8px;
+}
+
+.list-column-toggle:hover {
+  background: var(--kanban-badge-bg);
+}
+
+.list-column-toggle:focus-visible {
+  outline: 2px solid var(--kanban-accent);
+}
+
+.list-column-content {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  min-height: 80px;
+}
+
+.list-column-content.collapsed {
+  display: none;
+}
+
+.list-card-wrapper {
+  width: 100%;
+}
+
+/* Drag states for list view */
+.list-column.dragging {
+  opacity: 0.5;
+}
+
+.list-column-content.drag-over {
+  background: var(--vscode-list-dropBackground, var(--vscode-editor-selectionBackground));
+  border-radius: 4px;
+}
+
+/* Markdown rendering styles */
+.markdown-content {
+  font-size: inherit;
+  line-height: 1.5;
+}
+
+.markdown-content p {
+  margin: 0 0 0.5em 0;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content code {
+  font-family: var(--vscode-editor-font-family, monospace);
+  font-size: 0.9em;
+  background: var(--vscode-editor-inactiveSelectionBackground);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  white-space: pre;
+}
+
+.markdown-content pre {
+  background: var(--vscode-editor-inactiveSelectionBackground);
+  padding: 0.5em;
+  border-radius: 4px;
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: visible;
+  white-space: pre;
+  font-size: 0.85em;
+  margin: 0.5em 0;
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.markdown-inline-code {
+  font-family: var(--vscode-editor-font-family, monospace);
+  background: var(--vscode-editor-inactiveSelectionBackground);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+.markdown-wikilink {
+  color: var(--kanban-accent, #4a9eff);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.markdown-wikilink:hover {
+  text-decoration: underline;
+}
+
+/* Ensure markdown content fits in cards */
+.card-text .markdown-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Table cell markdown */
+.table-cell-markdown .markdown-content {
+  font-size: 12px;
+}
+
+.table-cell-markdown .markdown-content p {
+  margin: 0;
+}
+
+/* Table cell code block styles - preserve newlines */
+.table-cell-card .markdown-content pre {
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 150px;
+}
+
+.table-cell-card .markdown-content code {
+  white-space: pre;
+}
+
+/* Code blocks (language-* class from react-markdown) */
+.table-cell-card .markdown-content code[class*="language-"] {
+  display: block;
+  white-space: pre;
+  overflow-x: auto;
+  max-height: 150px;
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+}
+
+/* Paragraphs in table cell cards - preserve newlines */
+.table-cell-card .markdown-content p {
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+/* ─── Shiki Code Blocks ─────────────────────────────────────────────────────── */
+
+/* Shiki code block wrapper */
+.code-block-wrapper {
+  border-radius: 6px;
+  overflow: visible;
+  margin: 0.5em 0;
+}
+
+.code-block-wrapper pre.shiki {
+  margin: 0;
+  padding: 1em 1.2em;
+  overflow-x: auto;
+  font-family: var(--vscode-editor-font-family, "Fira Code", Consolas, "Courier New", monospace);
+  font-size: 0.85em;
+  line-height: 1.6;
+  tab-size: 2;
+}
+
+.code-block-wrapper code {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background: transparent !important;
+}
+
+/* Scrollbar styling for Shiki blocks */
+.code-block-wrapper pre::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb {
+  background: var(--vscode-scrollbarSlider-background, rgba(121, 121, 121, 0.4));
+  border-radius: 3px;
+}
+
+.code-block-wrapper pre::-webkit-scrollbar-thumb:hover {
+  background: var(--vscode-scrollbarSlider-hoverBackground, rgba(121, 121, 121, 0.6));
+}
+
+/* Shiki line numbers (if enabled) */
+.code-block-wrapper .line {
+  display: inline-block;
+  width: 100%;
+}
+
+/* Fallback for plain code blocks (no Shiki) */
+.code-block-fallback {
+  background: var(--vscode-textPreformat-background, rgba(0, 0, 0, 0.1));
+  color: var(--vscode-textPreformat-foreground);
+  padding: 0.75em 1em;
+  border-radius: 6px;
+  overflow-x: auto;
+  overflow-y: visible;
+  font-family: var(--vscode-editor-font-family, "Fira Code", Consolas, "Courier New", monospace);
+  font-size: 0.85em;
+  line-height: 1.6;
+  margin: 0.5em 0;
+  white-space: pre;
+  tab-size: 2;
+}
+
+/* ─── Prism.js Syntax Highlighting (VS Code theme) ─────────────────────────── */
+
+/* Base Prism styles using VS Code tokens */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--vscode-editor-foreground);
+  background: var(--vscode-editor-background);
+  font-family: var(--vscode-editor-font-family, "Fira Code", Consolas, "Courier New", monospace);
+  font-size: 0.85em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.6;
+  tab-size: 2;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  border-radius: 6px;
+  background: var(--vscode-editor-background);
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  white-space: normal;
+  background: var(--vscode-editor-inactiveSelectionBackground);
+}
+
+/* Prism token colors using VS Code theme variables */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--vscode-editorLineNumber-foreground, #6a9955);
+}
+
+.token.punctuation {
+  color: var(--vscode-editor-foreground, #d4d4d4);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: var(--vscode-editorToken-constant, #b5cea8);
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: var(--vscode-editorToken-string, #ce9178);
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: var(--vscode-editorToken-number, #d4d4d4);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: var(--vscode-editorToken-keyword, #c586c0);
+}
+
+.token.function,
+.token.class-name {
+  color: var(--vscode-editorToken-function, #dcdcaa);
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: var(--vscode-editorToken-variable, #d16969);
+}
+
+/* Scrollbar styling for Prism blocks */
+pre[class*="language-"]::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb {
+  background: var(--vscode-scrollbarSlider-background, rgba(121, 121, 121, 0.4));
+  border-radius: 3px;
+}
+
+pre[class*="language-"]::-webkit-scrollbar-thumb:hover {
+  background: var(--vscode-scrollbarSlider-hoverBackground, rgba(121, 121, 121, 0.6));
+}
+
+/* ─── Phase 4: Future-Ready Recommendations (Not Implemented) ────────────────── */
+
+/*
+ * 4.3 CSS Architecture Improvements
+ * Recommendation: Split board.css (1,524 lines) into logical modules:
+ *   - tokens.css (design tokens — keep as-is)
+ *   - base.css (reset, focus, reduced-motion)
+ *   - card.css (card component styles)
+ *   - column.css (column component styles)
+ *   - menu.css (all dropdown/menu styles)
+ *   - table-view.css (TableView component)
+ *   - list-view.css (ListView component)
+ *   - settings.css (SettingsPanel styles)
+ *   - markdown.css (MarkdownRenderer styles)
+ *   - prism.css (syntax highlighting)
+ * This is a significant refactor requiring comprehensive testing.
+ * Status: Deferred to future enhancement.
+ */
+
+/*
+ * 4.4 Mobile Responsiveness
+ * Recommendation: Add responsive breakpoints for smaller screens:
+ *   @media (max-width: 768px) { --kanban-column-width: 250px; }
+ *   @media (max-width: 480px) { --kanban-column-width: 220px; }
+ * VS Code extensions typically run on desktop, so this is lower priority.
+ * Status: Deferred unless specifically needed.
+ */
+
+/*
+ * 4.5 Loading/Error States
+ * Recommendation: Add CSS classes for loading and error states:
+ *   .loading { opacity: 0.6; pointer-events: none; }
+ *   .loading::after { /* spinner animation *\/ }
+ *   .error { /* error styling with VS Code theme colors *\/ }
+ * Status: Deferred unless specifically needed.
+ */
