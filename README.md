@@ -12,7 +12,7 @@
 [![Coverage](https://img.shields.io/badge/Coverage-90%25-8A2BE2?style=plastic&logo=codecov&logoColor=white)](https://github.com/divisionseven/unified-kanban)
 [![Tests](https://img.shields.io/badge/tests-484_passing-8A2BE2.svg?logo=vitest&logoColor=white&style=plastic)](https://vitest.dev/)
 
-[![Version](https://img.shields.io/badge/Version-0.6.0-black.svg?style=plastic)](https://github.com/divisionseven/unified-kanban)
+[![Version](https://img.shields.io/badge/Version-0.6.1-black.svg?style=plastic)](https://github.com/divisionseven/unified-kanban)
 [![License: MIT](https://img.shields.io/badge/License-MIT-black.svg?style=plastic)](LICENSE)
 
 </div>
