@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed tag duplication on card move - tags in indented continuation lines were being repeated multiple times when cards were moved between columns due to incorrect section header detection in the serializer
+- Added proper blank line formatting between columns (blank line before each ## heading and before settings block)
 
 ---
 

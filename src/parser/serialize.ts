@@ -17,6 +17,12 @@ export function serialize(state: BoardState): string {
   // 1. Frontmatter block
   if (state.frontmatterRaw) {
     parts.push(state.frontmatterRaw);
+
+    // Add blank line after frontmatter (separator before content)
+    // This ensures proper markdown formatting with blank line after ---
+    if (!state.rawBody || state.rawBody.trim() === "") {
+      parts.push("");
+    }
   }
 
   // 2. rawBody passthrough (pre-heading preamble content)
@@ -25,16 +31,26 @@ export function serialize(state: BoardState): string {
   }
 
   // 3. Columns
-  for (const column of state.columns) {
+  for (let i = 0; i < state.columns.length; i++) {
+    const column = state.columns[i];
+
+    // Add blank line before each column heading (except first)
+    if (i > 0) {
+      parts.push("");
+    }
+
     parts.push(`## ${column.title}`);
+
     const content = reconstructColumnContent(column);
-    if (content) {
+    if (content && content.trim() !== "") {
+      parts.push(""); // Blank line after heading before first card
       parts.push(content);
     }
   }
 
   // 4. Archive section
   if (state.archiveCards.length > 0) {
+    parts.push("");
     parts.push("***");
     parts.push("## Archive");
     for (const card of state.archiveCards) {
@@ -43,6 +59,9 @@ export function serialize(state: BoardState): string {
   }
 
   // 5. Settings block
+  if (state.settingsRaw || state.settings) {
+    parts.push(""); // Blank line before settings block
+  }
   if (state.settingsRaw) {
     parts.push(state.settingsRaw);
   } else if (state.settings) {
@@ -127,6 +146,13 @@ function reconstructColumnContent(column: Column): string {
   if (rawContent && rawContent.trim() !== "") {
     const rawLines = rawContent.split("\n");
 
+    // Skip leading blank line in rawContent (comes from parsing: "## Title\n<content>")
+    // so we don't get double blank lines after the heading
+    let startIndex = 0;
+    if (rawLines[0] === "") {
+      startIndex = 1;
+    }
+
     // Build a map from lineIndex to Card for cards that have a lineIndex
     const cardByLineIndex = new Map<number, Card>();
     const newCards: Card[] = [];
@@ -141,7 +167,7 @@ function reconstructColumnContent(column: Column): string {
 
     // Iterate through rawContent lines, replacing card lines with current data
     const outputLines: string[] = [];
-    for (let i = 0; i < rawLines.length; i++) {
+    for (let i = startIndex; i < rawLines.length; i++) {
       const rawLine = rawLines[i];
       const mappedCard = cardByLineIndex.get(i);
 
