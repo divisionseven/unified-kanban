@@ -1,0 +1,29 @@
+# Source (not needed - only dist/ is published)
+src/
+webview-ui/src/
+webview-ui/*.config.ts
+webview-ui/coverage/
+
+# Build artifacts that shouldn't ship
+*.vsix
+
+# IDE
+.vscode-test/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+tmp/
+temp/
+*.log
+
+# Coverage
+coverage/
+.vitest/
+
+# Cache
+.eslintcache
+.prettiercache

@@ -38,7 +38,7 @@ Thumbs.db
 *.log
 logs/
 
-# Tools
+# Indexing Tools
 .ckb/
 .srclight/
 .codebase-index-cache.pkl
@@ -63,6 +63,4 @@ __pycache__/
 venv/
 
 # Project-Specific Internal Files
-TODO.md
-plans/*
 internal_documentation/*

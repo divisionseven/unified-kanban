@@ -137,7 +137,7 @@ export function TableView({
       }
     }
     return cards;
-  }, [board.columns]);
+  }, [board.columns, _moveTags]);
 
   // Get unique inline metadata keys from all cards
   const inlineMetadataKeys = useMemo((): string[] => {
@@ -262,7 +262,15 @@ export function TableView({
     }
 
     return cols;
-  }, [inlineMetadataKeys, showCheckboxes, onToggleCard, tagColors, tagSort]);
+  }, [
+    inlineMetadataKeys,
+    showCheckboxes,
+    onToggleCard,
+    tagColors,
+    tagSort,
+    _onTagFilter,
+    _tagAction,
+  ]);
 
   const table = useReactTable({
     data: tableData,

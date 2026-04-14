@@ -2,7 +2,7 @@
 // These tests focus on uncovered code paths from the Card component
 
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Card } from "../components/Card.js";
 import type { Card as CardType } from "../../../src/parser/types.ts";
 import dayjs from "dayjs";

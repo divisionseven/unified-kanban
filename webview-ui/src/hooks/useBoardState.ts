@@ -283,6 +283,7 @@ export function useBoardState(): BoardStateHook {
         if (cardIndex === -1) return current;
 
         const [card] = fromColumn.cards.splice(cardIndex, 1);
+        if (!card) return current;
 
         // Auto-check if dropping into a Complete column
         if (toColumn.complete && !card.checked) {
@@ -336,7 +337,9 @@ export function useBoardState(): BoardStateHook {
       if (columnIndex === -1) return current;
 
       const [column] = updated.columns.splice(columnIndex, 1);
-      updated.columns.splice(newIndex, 0, column);
+      if (column) {
+        updated.columns.splice(newIndex, 0, column);
+      }
 
       return updated;
     });

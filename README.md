@@ -5,7 +5,7 @@
 
 ### Unifying kanban syntax for markdown — the same board format across Obsidian and VS Code
 
-[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=unified-kanban.unified-kanban)
+[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=divisionseven.unified-kanban)
 [![VS Code](https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic)](https://code.visualstudio.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-8A2BE2?style=plastic&logo=typescript&logoColor=white)](https://github.com/divisionseven/unified-kanban)
 [![React](https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white)](https://github.com/divisionseven/unified-kanban)
@@ -52,6 +52,19 @@ Or use the Command Palette:
 If you open a non-kanban `.md` file, the extension will attempt to render any `##` headings as lists and `- [ ]` items as cards. However, anything else in the file will be ignored. If you change any board settings, the extension will automatically add the required settings footer to your document.
 
 **Compatibility note:** While Unified Kanban is flexible about the YAML frontmatter section being included, the Obsidian kanban plugin requires proper YAML frontmatter to recognise the document as a kanban board. Any new boards created using this extension will include **all** required fields to work perfectly in both Obsidian and here.
+
+## Screenshots
+
+<!-- TODO: Add screenshots -->
+<!--
+Required screenshots:
+1. Board view showing columns and cards - capture the main kanban board with at least 3 columns
+2. Card detail view - show a card expanded with tags, dates, and metadata visible
+3. Settings panel - show the settings/configuration UI
+
+Place images in: docs/assets/
+Recommended format: PNG, 1200px width for good readability
+-->
 
 ### The Markdown Format
 

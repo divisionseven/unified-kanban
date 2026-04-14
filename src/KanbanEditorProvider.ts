@@ -163,7 +163,7 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
       sandbox: {
         "allow-modals": true,
       },
-    } as any as vscode.WebviewOptions;
+    } as unknown as vscode.WebviewOptions;
 
     webviewPanel.webview.html = getWebviewContent(webviewPanel.webview, this.context.extensionUri);
 
@@ -451,8 +451,6 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
             // Serialize and apply
             const newText = serialize(board);
 
-            // Show first 500 chars of serialized output for debugging
-            const preview = newText.substring(0, 500);
             const edit = new vscode.WorkspaceEdit();
             edit.replace(document.uri, new vscode.Range(0, 0, document.lineCount, 0), newText);
             applyingEdit = true;
@@ -462,7 +460,6 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
             }
 
             const updatedBoard = parseDocument(document);
-
 
             sendHostMessage(webviewPanel, {
               type: "UPDATE_CARD_RESULT",
@@ -1556,6 +1553,7 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
               query: `#${tag}`,
             });
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.error("Failed to open search:", err);
           }
           break;
@@ -1565,6 +1563,7 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
           try {
             await vscode.commands.executeCommand("vscode.open", document.uri);
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.error("Failed to open file:", err);
           }
           break;
@@ -1835,6 +1834,7 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
               archivedCount,
             });
           } catch (err) {
+            // eslint-disable-next-line no-console
             console.error("Archive all failed:", err);
             sendHostMessage(webviewPanel, {
               type: "ARCHIVE_ALL_CARDS_RESULT",
@@ -2283,7 +2283,14 @@ export function getWebviewContent(webview: vscode.Webview, extensionUri: vscode.
   const indexHtmlUri = vscode.Uri.joinPath(webviewDistUri, "index.html");
 
   // Read the built index.html
-  const indexHtml = require("fs").readFileSync(indexHtmlUri.fsPath, "utf8");
+  let indexHtml: string;
+  try {
+    indexHtml = require("fs").readFileSync(indexHtmlUri.fsPath, "utf8");
+  } catch (err) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    void vscode.window.showErrorMessage(`Failed to load webview: ${errorMessage}`);
+    return "";
+  }
 
   // Build CSP
   const csp = [

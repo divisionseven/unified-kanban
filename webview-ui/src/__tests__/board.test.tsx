@@ -1023,7 +1023,7 @@ describe("Board — tag filter", () => {
 
   it("dismisses tag filter when dismiss button is clicked", () => {
     const board = boardWithTaggedCard();
-    const { container } = render(<Board board={board} settings={board.settings} />);
+    const { container: _container } = render(<Board board={board} settings={board.settings} />);
     // Simulate tag filter being active via props (need to pass activeTagFilter somehow)
     // Since activeTagFilter is internal state, we need to trigger it via UI
     // Let's test the dismiss button is present when filter is active

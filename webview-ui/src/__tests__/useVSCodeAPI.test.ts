@@ -2,7 +2,7 @@
 // Note: This is not a React hook but a wrapper around VS Code's webview API.
 // Tests verify the exported functions: postMessage, getState, setState
 
-import { vi, describe, it, expect, beforeEach, afterEach } from "vitest";
+import { vi, describe, it, expect, beforeEach } from "vitest";
 
 // Create mock functions that will be used in the module
 const mockPostMessage = vi.fn();
@@ -390,7 +390,7 @@ describe("useVSCodeAPI — state round-trip", () => {
     // With the default mock that returns undefined, we just verify no throws
     expect(() => {
       setState({ test: "value" });
-      const state = getState();
+      void getState();
     }).not.toThrow();
   });
 
@@ -401,7 +401,7 @@ describe("useVSCodeAPI — state round-trip", () => {
       setState("first");
       setState(2);
       setState({ third: true });
-      const result = getState();
+      void getState();
     }).not.toThrow();
   });
 });

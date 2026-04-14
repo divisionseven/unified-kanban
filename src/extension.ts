@@ -33,14 +33,14 @@ export function activate(context: vscode.ExtensionContext): void {
   // Register the "New Board" command
   context.subscriptions.push(
     vscode.commands.registerCommand("kanban.newBoard", () => {
-      createNewBoard();
+      void createNewBoard();
     }),
   );
 
   // Register the "Archive Done Cards" command
   context.subscriptions.push(
     vscode.commands.registerCommand("kanban.archiveDoneCards", () => {
-      archiveDoneCards();
+      void archiveDoneCards();
     }),
   );
 

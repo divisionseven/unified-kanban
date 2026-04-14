@@ -173,7 +173,8 @@ function reconstructColumnContent(column: Column): string {
               continue;
             }
             if (/^- \[[ x]\] /.test(nextLine)) break; // New card
-            if (nextLine.trim().startsWith("#")) break; // Section header
+            // Check for actual section headers: ##, ###, not indented tags
+            if (nextLine.trim().match(/^#{1,6}\s/)) break; // ##, ###, ####, etc.
             if (nextLine.trim() === "**Complete**") break;
             if (nextLine.trim().startsWith("<!--")) break; // HTML comment
           }
@@ -182,7 +183,6 @@ function reconstructColumnContent(column: Column): string {
         }
         i = lookAhead - 1; // Adjust index (loop will increment)
       } else {
-        const _rawLine = rawLines[i];
         if (rawLine === undefined) continue;
         // Skip orphan card lines (removed by move/delete operations).
         // These are lines matching the card pattern that no longer have a
@@ -204,7 +204,8 @@ function reconstructColumnContent(column: Column): string {
             if (nextLine?.trim().match(/^[`~]{3,}/)) {
               inFencedCode = !inFencedCode;
             }
-            // Only break for non-card content if NOT inside a fenced code block
+            // Only break for section headers (##, ###), not for indented tags (#tag)
+            // Section headers start with # after trim AND have ## or ### prefix
             if (!inFencedCode) {
               // Blank line - skip but continue looking
               if (!nextLine || nextLine.trim() === "") {
@@ -212,7 +213,8 @@ function reconstructColumnContent(column: Column): string {
                 continue;
               }
               if (/^- \[[ x]\] /.test(nextLine)) break;
-              if (nextLine.trim().startsWith("#")) break;
+              // Check for actual section headers: ##, ###, not indented tags
+              if (nextLine.trim().match(/^#{1,6}\s/)) break; // ##, ###, ####, etc.
               if (nextLine.trim() === "**Complete**") break;
               if (nextLine.trim().startsWith("<!--")) break;
             }

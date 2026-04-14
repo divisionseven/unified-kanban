@@ -321,7 +321,7 @@ describe("MarkdownRenderer — complex content", () => {
   });
 
   it("renders heading and list", () => {
-    const { container } = render(
+    const { container: _container } = render(
       <MarkdownRenderer
         content={`# Main Title
 

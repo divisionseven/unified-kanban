@@ -23,7 +23,7 @@ export function normalizeFencedCodeIndent(content: string): string {
 
     // Calculate minIndent from ALL lines including fence lines
     const minIndent = Math.min(
-      ...fullBlockLines.map((line: string) => line.match(/^(\s*)/)?.[1].length ?? 0),
+      ...fullBlockLines.map((line: string) => line.match(/^(\s*)/)?.[1]?.length ?? 0),
     );
 
     if (minIndent === 0 || minIndent === Infinity) return fullBlock;

@@ -1,6 +1,6 @@
 // ─── MarkdownRenderer Tag Click Coverage Test ────────────────────────────────
 
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import { MarkdownRenderer } from "../components/MarkdownRenderer.js";
 
 describe("MarkdownRenderer — onTagClick callback coverage", () => {

@@ -1235,7 +1235,7 @@ describe("TableView — checkbox visibility", () => {
 describe("TableView — all priority levels", () => {
   it("displays all priority labels correctly", () => {
     const priorities = [0, 1, 2, 3, 4, null];
-    const labels = ["Highest", "High", "Medium", "Low", "Lowest", "None"];
+    const _labels = ["Highest", "High", "Medium", "Low", "Lowest", "None"];
     const board = createTestBoard({
       columns: [
         {
@@ -1249,7 +1249,7 @@ describe("TableView — all priority levels", () => {
             checked: false,
             metadata: { ...emptyMetadata, priority: p },
           })),
-          rawContent: priorities.map((_, i) => `- [ ] Priority ${_ ?? "none"}`).join("\n"),
+          rawContent: priorities.map((_) => `- [ ] Priority ${_ ?? "none"}`).join("\n"),
         },
       ],
     });

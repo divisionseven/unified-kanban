@@ -1,7 +1,7 @@
 // ─── Card Component Comprehensive Tests ─────────────────────────────────────
 
-import { render, screen, fireEvent, waitFor, act } from "@testing-library/react";
-import type { Card as CardType, CardMetadata } from "../../../src/parser/types.ts";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import type { Card as CardType } from "../../../src/parser/types.ts";
 import { Card } from "../components/Card.js";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";

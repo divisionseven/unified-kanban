@@ -9,12 +9,28 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          "vendor-react": ["react", "react-dom"],
-          "vendor-dnd": ["@dnd-kit/core", "@dnd-kit/sortable", "@dnd-kit/utilities"],
-          "vendor-markdown": ["react-markdown", "remark-gfm", "rehype-highlight"],
-          "vendor-table": ["@tanstack/react-table"],
-          "vendor-icons": ["lucide-react"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "vendor-react";
+            }
+            if (id.includes("@dnd-kit") || id.includes("dnd-kit")) {
+              return "vendor-dnd";
+            }
+            if (
+              id.includes("react-markdown") ||
+              id.includes("remark-gfm") ||
+              id.includes("rehype-highlight")
+            ) {
+              return "vendor-markdown";
+            }
+            if (id.includes("@tanstack")) {
+              return "vendor-table";
+            }
+            if (id.includes("lucide-react")) {
+              return "vendor-icons";
+            }
+          }
         },
       },
     },

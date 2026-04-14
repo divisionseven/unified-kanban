@@ -292,7 +292,6 @@ export function SettingsPanel({
     showAddList,
     showArchiveAll,
     showViewAsMarkdown,
-    showBoardSettings,
     showSearch,
     showSetView,
     fullListLaneWidth,
@@ -476,7 +475,7 @@ export function SettingsPanel({
                   disabled={idx === 0}
                   onClick={() => {
                     const updated = [...tagSort];
-                    [updated[idx - 1], updated[idx]] = [updated[idx], updated[idx - 1]];
+                    [updated[idx - 1]!, updated[idx]!] = [updated[idx]!, updated[idx - 1]!];
                     setTagSort(updated);
                   }}
                 >
@@ -486,7 +485,7 @@ export function SettingsPanel({
                   disabled={idx === tagSort.length - 1}
                   onClick={() => {
                     const updated = [...tagSort];
-                    [updated[idx], updated[idx + 1]] = [updated[idx + 1], updated[idx]];
+                    [updated[idx]!, updated[idx + 1]!] = [updated[idx + 1]!, updated[idx]!];
                     setTagSort(updated);
                   }}
                 >

@@ -4,7 +4,6 @@ import { render } from "@testing-library/react";
 import { MarkdownRenderer } from "../components/MarkdownRenderer.js";
 
 // ─── Code Block End-to-End Test ─────────────────────────────────────────
-
 describe("MarkdownRenderer — code blocks", () => {
   it("renders fenced code blocks with proper <pre><code> structure", () => {
     // IMPORTANT: Fenced code blocks require a newline after the opening fence
@@ -33,22 +32,6 @@ more text`;
     // Verify the code content is preserved
     expect(codeText).toContain("function hello()");
     expect(codeText).toContain('return "world"');
-
-    console.log("=== FULL HTML OUTPUT ===");
-    console.log(container.innerHTML);
-    console.log("=== END HTML OUTPUT ===");
-
-    console.log("=== PRE ELEMENT ===");
-    console.log(pre?.outerHTML);
-    console.log("=== END PRE ELEMENT ===");
-
-    console.log("=== CODE ELEMENT ===");
-    console.log(code?.outerHTML);
-    console.log("=== END CODE ELEMENT ===");
-
-    console.log("=== CODE TEXT CONTENT ===");
-    console.log(codeText);
-    console.log("=== END CODE TEXT CONTENT ===");
   });
 
   it("renders properly formatted fenced code block", () => {
@@ -62,10 +45,6 @@ function hello() {
 End`;
 
     const { container } = render(<MarkdownRenderer content={content} />);
-
-    console.log("=== PROPER FENCED BLOCK HTML ===");
-    console.log(container.innerHTML);
-    console.log("=== END PROPER FENCED BLOCK HTML ===");
 
     const pre = container.querySelector("pre");
     expect(pre).not.toBeNull();
@@ -83,10 +62,6 @@ End`;
     const inlineCode = container.querySelector(".markdown-inline-code");
     expect(inlineCode).not.toBeNull();
     expect(inlineCode?.textContent).toBe("inline code");
-
-    console.log("=== INLINE CODE HTML ===");
-    console.log(container.innerHTML);
-    console.log("=== END INLINE CODE HTML ===");
   });
 
   it("preserves backticks in content before markdown processing", () => {
@@ -94,10 +69,6 @@ End`;
     const content = "Text with \`\`\`three backticks\`\`\`";
 
     const { container } = render(<MarkdownRenderer content={content} />);
-
-    console.log("=== THREE BACKTICKS HTML ===");
-    console.log(container.innerHTML);
-    console.log("=== END THREE BACKTICKS HTML ===");
 
     // The content should contain a code element
     const codeElements = container.querySelectorAll("code");

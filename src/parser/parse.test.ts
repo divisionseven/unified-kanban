@@ -1596,6 +1596,7 @@ cssclass: single-class
 });
 
 describe("code block parsing audit", () => {
+  // eslint-disable-next-line no-console
   it("should store fenced code block content in card", () => {
     const md = `## Todo
 - [ ] Card with code
@@ -1614,11 +1615,17 @@ more text
       throw new Error("Card not found");
     }
 
+    // eslint-disable-next-line no-console
     console.log("=== Card rawText ===");
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(card.rawText));
+    // eslint-disable-next-line no-console
     console.log("\n=== Card text ===");
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(card.text));
+    // eslint-disable-next-line no-console
     console.log("\n=== Card metadata tags ===");
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(card.metadata.tags));
 
     // Report what we find
@@ -1629,6 +1636,7 @@ more text
 });
 
 describe("code block tag extraction audit", () => {
+  // eslint-disable-next-line no-console
   it("should extract tags outside code block but not inside", () => {
     const md = `## Todo
 - [ ] Card with code #mytag
@@ -1647,11 +1655,17 @@ function test() {
       throw new Error("Card not found");
     }
 
+    // eslint-disable-next-line no-console
     console.log("=== Card rawText ===");
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(card.rawText));
+    // eslint-disable-next-line no-console
     console.log("\n=== Card text ===");
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(card.text));
+    // eslint-disable-next-line no-console
     console.log("\n=== Card metadata tags ===");
+    // eslint-disable-next-line no-console
     console.log(JSON.stringify(card.metadata.tags));
   });
 });

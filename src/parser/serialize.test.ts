@@ -1770,3 +1770,110 @@ describe("serialize > checkbox toggle indentation accumulation regression", () =
     expect(rawText).toBe(originalRawText);
   });
 });
+
+// ─── Indented Tag Duplication Bug Regression ─────────────────────────────────
+
+describe("serialize > indented tag duplication bug", () => {
+  it("does not duplicate tags in indented continuation lines when cards are moved", () => {
+    /**
+     * Bug: Tags in indented continuation lines repeat ~30 times when cards are moved.
+     *
+     * Original: `- [ ] Task #backend\n      #infrastructure` (6-space indented tag)
+     * After move: tag repeats 30+ times
+     *
+     * This test verifies that tags in indented continuation lines appear exactly once.
+     */
+    const state: BoardState = {
+      frontmatter: "",
+      frontmatterRaw: "",
+      columns: [
+        {
+          id: "todo",
+          title: "Todo",
+          complete: false,
+          // Source column rawContent has the card with 6-space indented tag
+          // This card was moved - no corresponding card in column.cards
+          rawContent: "- [ ] Task #backend\n      #infrastructure",
+          cards: [],
+        },
+        {
+          id: "done",
+          title: "Done",
+          complete: false,
+          rawContent: "- [ ] Existing task",
+          cards: [
+            {
+              id: "existing",
+              text: "Existing task",
+              rawText: "- [ ] Existing task",
+              checked: false,
+              lineIndex: 0,
+              metadata: {
+                dueDates: [],
+                times: [],
+                tags: [],
+                wikilinks: [],
+                priority: null,
+                startDate: null,
+                createdDate: null,
+                scheduledDate: null,
+                dueDate: null,
+                doneDate: null,
+                cancelledDate: null,
+                recurrence: null,
+                dependsOn: null,
+                blockId: null,
+                inlineMetadata: [],
+                wikilinkDates: [],
+                mdNoteDates: [],
+              },
+            },
+            // Moved card with indented tag in rawText
+            {
+              id: "moved",
+              text: "Task #backend",
+              rawText: "- [ ] Task #backend\n      #infrastructure",
+              checked: false,
+              lineIndex: undefined, // New card in target
+              metadata: {
+                dueDates: [],
+                times: [],
+                tags: ["backend", "infrastructure"],
+                wikilinks: [],
+                priority: null,
+                startDate: null,
+                createdDate: null,
+                scheduledDate: null,
+                dueDate: null,
+                doneDate: null,
+                cancelledDate: null,
+                recurrence: null,
+                dependsOn: null,
+                blockId: null,
+                inlineMetadata: [],
+                wikilinkDates: [],
+                mdNoteDates: [],
+              },
+            },
+          ],
+        },
+      ],
+      settings: null,
+      settingsRaw: null,
+      rawBody: "",
+      archiveCards: [],
+      archiveRawContent: "",
+      cssClasses: [],
+    };
+
+    const result = serialize(state);
+
+    // Count occurrences of each tag
+    const backendMatches = (result.match(/#backend/g) || []).length;
+    const infraMatches = (result.match(/#infrastructure/g) || []).length;
+
+    // Both tags should appear exactly once
+    expect(backendMatches).toBe(1);
+    expect(infraMatches).toBe(1);
+  });
+});

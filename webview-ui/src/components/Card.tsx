@@ -291,7 +291,7 @@ export function stripMetadataMarkers(
 
       // Collapse interior whitespace
       const leadingMatch = processed.match(/^([ \t]*)/);
-      const leading = leadingMatch ? leadingMatch[1] : "";
+      const leading = leadingMatch?.[1] ?? "";
       const rest = processed.slice(leading.length);
       return leading + rest.replace(/[ \t]+/g, " ");
     })
@@ -531,8 +531,9 @@ export function Card({
 
   const handleCopyItem = useCallback(() => {
     dropdown.close();
-    navigator.clipboard.writeText(card.rawText).catch(() => {
-      // Silently ignore clipboard errors
+    navigator.clipboard.writeText(card.rawText).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.warn("Failed to copy card to clipboard:", err);
     });
   }, [card.rawText, dropdown]);
 
