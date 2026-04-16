@@ -136,48 +136,76 @@ dist/                       # Build output (both extension + parser)
 
 ## Changelog Entries
 
-This project uses a file-per-entry changelog system. Every completed change gets its own immutable file:
+This project follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-```
-changelog/entries/changelog.YYYYMMDD_HHMMSS.md
-```
+### Format
 
-### Creating an entry
+All changelog entries go in `CHANGELOG.md` under the `## [Unreleased]` section. Use these categories:
 
-```bash
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-cat > changelog/entries/changelog.${TIMESTAMP}.md << 'EOF'
-## [Date] - [Brief Description]
-
-### Overview
-[One-paragraph summary]
-
-### Changes Made
-- **File**: `path/to/file.ts`
-  - Description of change
-  - Impact: What this affects
-
-### Files Modified
-| File | Change Type | Description |
-|------|-------------|-------------|
-| ... | ... | ... |
-
-### Testing
-- Tests passing: X/Y
-
-### Impact
-- Performance: [Any changes]
-- Functionality: [What users will notice]
-- Breaking: [Any breaking changes]
-EOF
-```
+- **Added** — for new features
+- **Changed** — for changes in existing functionality
+- **Deprecated** — for soon-to-be removed features
+- **Removed** — for now removed features
+- **Fixed** — for any bug fixes
+- **Security** — in case of vulnerabilities
 
 ### Rules
 
-- **Always create new files** — never modify existing changelog entries
-- **Filename format**: `changelog.<TIMESTAMP>.md` — never use generic names
-- **Bug fix entries** must include: root cause, fix mechanism, regression test name, and callers verified
-- Entries are immutable once created
+1. **One file** — all entries go in `CHANGELOG.md`, no separate entry files
+2. **Immutability** — never modify or delete released version sections
+3. **Dates** — use ISO 8601 format: `YYYY-MM-DD`
+4. **Unreleased first** — keep `[Unreleased]` at the top, above all versioned sections
+5. **Human-readable** — write for humans, not machines
+6. **Group by type** — same types of changes should be grouped together
+
+### Entry Examples
+
+**New feature:**
+
+```markdown
+### Added
+
+- Add command palette support for quick card creation
+```
+
+**Bug fix:**
+
+```markdown
+### Fixed
+
+- Resolve card drag-and-drop freezing on large boards
+```
+
+**Breaking change:**
+
+```markdown
+### Changed
+
+- Rename `kanban.toggleView` to `kanban.switchView` for clarity
+
+BREAKING CHANGE: The `kanban.toggleView` command has been removed.
+Use `kanban.switchView` instead.
+```
+
+### Version Bumping
+
+When cutting a release:
+
+1. Move content from `## [Unreleased]` into `## [x.y.z] - YYYY-MM-DD`
+2. Add a fresh empty `## [Unreleased]` at the top
+3. Bump version in `package.json`
+4. Commit with message: `chore(release): bump version to x.y.z`
+5. Tag with: `git tag -a vx.y.z -m "Release x.y.z"`
+
+### Version Increment Guide
+
+| Change Type                       | Increment                 |
+| --------------------------------- | ------------------------- |
+| New feature (backward compatible) | Minor (`1.2.3` → `1.3.0`) |
+| Bug fix (backward compatible)     | Patch (`1.2.3` → `1.2.4`) |
+| Breaking API change               | Major (`1.2.3` → `2.0.0`) |
+| Deprecation added                 | Minor                     |
+| Feature removed                   | Major                     |
 
 ## Pull Request Expectations
 
@@ -185,7 +213,7 @@ EOF
    - `npm run check` — no type errors
    - `npm test` — all tests passing
 
-2. **Create a changelog entry** for your change in `changelog/entries/`
+2. **Create a changelog entry** in `CHANGELOG.md` under `## [Unreleased]`
 
 3. **Write tests** for new functionality. Tests live next to source: `src/**/*.test.ts`
 
@@ -197,7 +225,6 @@ EOF
 
 ## Reporting Issues
 
-
-- Use [GitHub Issues](https://github.com/unified-kanban/vscode-kanban/issues) for bug reports and feature requests
+- Use [GitHub Issues](https://github.com/divisionseven/unified-kanban/issues) for bug reports and feature requests
 - Include steps to reproduce, expected behavior, and actual behavior
 - Include VS Code version and extension version

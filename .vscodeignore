@@ -1,3 +1,31 @@
+# Dev config
+.github/
+.editorconfig
+.prettierrc
+.nvmrc
+.gitattributes
+eslint.config.js
+tsconfig.json
+tsconfig.extension.json
+vitest.config.ts
+
+# Project docs (not needed in extension)
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+SECURITY.md
+SUPPORT.md
+internal_documentation/
+test-board.md
+*.vsix
+
+# Webview dev files (only dist/webview is needed)
+webview-ui/package.json
+webview-ui/package-lock.json
+webview-ui/index.html
+webview-ui/vite.config.ts
+webview-ui/vitest.config.ts
+webview-ui/tsconfig.json
+
 # Source (not needed - only dist/ is published)
 src/
 webview-ui/src/

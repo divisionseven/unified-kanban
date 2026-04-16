@@ -97,7 +97,7 @@ kanban-plugin: basic
 **Format rules:**
 
 | Element     | Syntax                         | Description                       |
-|-------------|--------------------------------|-----------------------------------|
+| ----------- | ------------------------------ | --------------------------------- |
 | Frontmatter | `--- kanban-plugin: basic ---` | Required header (lines 1-3)       |
 | Columns     | `## Column Name`               | Each H2 heading becomes a column  |
 | Open cards  | `- [ ]`                        | Unchecked task                    |
@@ -158,7 +158,7 @@ The extension provides 30+ settings organized into categories:
 **Global Settings** (VS Code preferences):
 
 | Setting                         | Default      | Description                             |
-|---------------------------------|--------------|-----------------------------------------|
+| ------------------------------- | ------------ | --------------------------------------- |
 | `kanban.defaultLaneWidth`       | `270`        | Default column width in pixels          |
 | `kanban.defaultDateFormat`      | `YYYY-MM-DD` | Default date display format             |
 | `kanban.defaultTimeFormat`      | `HH:mm`      | Default time display format             |
@@ -279,7 +279,7 @@ Yes. Click the search icon in the board header to open the search panel. You can
 ### What shortcuts are available?
 
 | Shortcut     | macOS         | Windows/Linux  | Action                    |
-|--------------|---------------|----------------|---------------------------|
+| ------------ | ------------- | -------------- | ------------------------- |
 | New Board    | `Cmd+Shift+N` | `Ctrl+Shift+N` | Create a new kanban board |
 | Archive Done | `Cmd+Shift+A` | `Ctrl+Shift+A` | Archive all done cards    |
 | Toggle View  | `Cmd+Shift+K` | `Ctrl+Shift+K` | Toggle kanban/text view   |
@@ -352,7 +352,7 @@ The extension works with the standard Obsidian Kanban format, which uses non-sta
 **Filename patterns that work:**
 
 | Pattern       | Matches                            |
-|---------------|------------------------------------|
+| ------------- | ---------------------------------- |
 | `*board*.md`  | `my-board.md`, `board-todo.md`     |
 | `*-kanban.md` | `work-kanban.md`, `home-kanban.md` |
 | `kanban/`     | Entire directory                   |
@@ -393,7 +393,7 @@ The extension works with the standard Obsidian Kanban format, which uses non-sta
 ### Other common issues
 
 | Issue                  | Solution                                            |
-|------------------------|-----------------------------------------------------|
+| ---------------------- | --------------------------------------------------- |
 | Changes not saving     | Check file is not read-only; verify disk space      |
 | Tags not showing       | Ensure `moveTags` is enabled in settings            |
 | Dates not showing      | Ensure `moveDates` is enabled; check date format    |
@@ -406,7 +406,7 @@ The extension works with the standard Obsidian Kanban format, which uses non-sta
 
 ### How do I report a bug?
 
-1. Check the [existing issues](https://github.com/unified-kanban/vscode-kanban/issues) to see if it's already reported
+1. Check the [existing issues](https://github.com/divisionseven/unified-kanban/issues) to see if it's already reported
 2. Create a new issue with:
    - VS Code version and OS
    - Steps to reproduce
@@ -415,7 +415,7 @@ The extension works with the standard Obsidian Kanban format, which uses non-sta
 
 ### How do I request a feature?
 
-Open a [feature request](https://github.com/unified-kanban/vscode-kanban/discussions) on GitHub. Describe:
+Open a [feature request](https://github.com/divisionseven/unified-kanban/discussions) on GitHub. Describe:
 
 - The use case you're trying to solve
 - How you'd like it to work
@@ -423,7 +423,7 @@ Open a [feature request](https://github.com/unified-kanban/vscode-kanban/discuss
 
 ### Where can I discuss the extension?
 
-Join the [GitHub Discussions](https://github.com/unified-kanban/vscode-kanban/discussions) for:
+Join the [GitHub Discussions](https://github.com/divisionseven/unified-kanban/discussions) for:
 
 - Usage questions
 - Feature ideas
@@ -432,4 +432,4 @@ Join the [GitHub Discussions](https://github.com/unified-kanban/vscode-kanban/di
 
 ### Is there a changelog?
 
-Yes. See `changelog/entries/` for all version changes and updates.
+Yes. See `CHANGELOG.md` for all version changes and updates.

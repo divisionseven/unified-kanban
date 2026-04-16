@@ -3,7 +3,6 @@
     "target": "ES2022",
     "module": "CommonJS",
     "moduleResolution": "node",
-    "ignoreDeprecations": "6.0",
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
@@ -16,7 +15,5 @@
     "rootDir": "./src",
     "skipLibCheck": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

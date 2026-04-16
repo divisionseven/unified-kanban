@@ -12,4 +12,4 @@
 - [ ] `npm test` passes (all tests)
 - [ ] `npm run build` succeeds (no build errors)
 - [ ] No regressions in existing functionality
-- [ ] Changelog entry created (`changelog/entries/changelog.YYYYMMDD_HHMMSS.md`)
+- [ ] Changelog entry added to `CHANGELOG.md` under `## [Unreleased]`

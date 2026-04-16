@@ -34,6 +34,9 @@ export function serialize(state: BoardState): string {
   for (let i = 0; i < state.columns.length; i++) {
     const column = state.columns[i];
 
+    // Guard for noUncheckedIndexedAccess
+    if (!column) continue;
+
     // Add blank line before each column heading (except first)
     if (i > 0) {
       parts.push("");

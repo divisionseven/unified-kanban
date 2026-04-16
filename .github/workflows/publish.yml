@@ -21,13 +21,22 @@ jobs:
 
       - run: cd webview-ui && npm ci
 
-      - run: npm run build
+      - run: npm run check
+
+      - run: npm run lint
 
       - run: npm test
 
       - run: cd webview-ui && npx vitest run
 
+      - run: npm run build
+
       - name: Publish to Marketplace
         run: npx @vscode/vsce publish
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX Registry
+        run: npx ovsx publish
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}

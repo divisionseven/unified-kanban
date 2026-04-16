@@ -9,16 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add husky and lint-staged for pre-commit hook and staged file formatting
+
 ### Changed
 
-### Deprecated
-
-### Removed
+- Restructure README.md with reference-style link aliases
+- Move banner.png to `docs/assets/brand/` for better asset organization
+- Add demo GIFs and screenshots to "See It In Action" section
+- Add table of contents and reorganize sections
+- Update `.vscodeignore` with improved file patterns
+- Improve GitHub Actions publish workflow
+- Update pull request template
+- Update FAQ with correct GitHub repository URLs
 
 ### Fixed
 
-- Fixed tag duplication on card move - tags in indented continuation lines were being repeated multiple times when cards were moved between columns due to incorrect section header detection in the serializer
-- Added proper blank line formatting between columns (blank line before each ## heading and before settings block)
+- Improve markdown formatting on edit/creation events
+- Add blank space above H2 card headers to silence markdown linter warnings
+
+### Removed
+
+- Remove test-board.md fixture
 
 ---
 
