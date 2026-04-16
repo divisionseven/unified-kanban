@@ -8,13 +8,6 @@
   "main": "./dist/extension.js",
   "icon": "icon.png",
   "author": "Division 7",
-  "activationEvents": [],
-  "files": [
-    "dist/",
-    "README.md",
-    "icon.png",
-    "LICENSE.md"
-  ],
   "galleryBanner": {
     "color": "#8A2BE2",
     "theme": "dark"
