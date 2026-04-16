@@ -1,25 +1,42 @@
 <div align="center">
-  <img src="docs/assets/banner.png" alt="Unified Kanban" width="250">
+  <img src="docs/assets/brand/banner.png" alt="Unified Kanban" width="250">
 
 # Unified Kanban
 
-### Unifying kanban syntax for markdown — the same board format across Obsidian and VS Code
+### One kanban format for Obsidian and VS Code. Finally.
 
-[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=divisionseven.unified-kanban)
-[![VS Code](https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic)](https://code.visualstudio.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-8A2BE2?style=plastic&logo=typescript&logoColor=white)](https://github.com/divisionseven/unified-kanban)
-[![React](https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white)](https://github.com/divisionseven/unified-kanban)
-[![Coverage](https://img.shields.io/badge/Coverage-90%25-8A2BE2?style=plastic&logo=codecov&logoColor=white)](https://github.com/divisionseven/unified-kanban)
-[![Tests](https://img.shields.io/badge/tests-484_passing-8A2BE2.svg?logo=vitest&logoColor=white&style=plastic)](https://vitest.dev/)
+[![VS Code Marketplace][vscode-marketplace-badge]][vscode-marketplace]
+[![VS Code][vscode-version-badge]][vscode-version]
+[![TypeScript][typescript-badge]][github-repo]
+[![React][react-badge]][github-repo]
+[![Coverage][coverage-badge]][github-repo]
+[![Tests][tests-badge]][vitest]
 
-[![Version](https://img.shields.io/badge/Version-0.6.1-black.svg?style=plastic)](https://github.com/divisionseven/unified-kanban)
-[![License: MIT](https://img.shields.io/badge/License-MIT-black.svg?style=plastic)](LICENSE)
+[![Version][version-badge]][github-repo]
+[![License: MIT][license-badge]][license]
 
 </div>
 
 ## Why Unified Kanban?
 
-Every markdown kanban extension on VS Code invents its own incompatible syntax. Switching tools means rewriting your boards from scratch. The [Obsidian Kanban](https://github.com/obsidian-community/obsidian-kanban) plugin has emerged as the de facto standard — battle-tested and widely adopted. **Unified Kanban** bridges the gap, bringing that proven format to VS Code so your boards work identically in both editors. One syntax, everywhere.
+Every markdown kanban extension on VS Code invents its own incompatible syntax. Switching between Obsidian and Visual Studio Code means rewriting your boards from scratch. It's impossible to train AI Agents on _ONE_ markdown syntax to use when creating kanban boards. The [Obsidian Kanban][obsidian-kanban-plugin] plugin has emerged as the de facto standard — battle-tested and widely adopted. **Unified Kanban** bridges the gap, bringing that proven format to VS Code so your boards work identically in both editors.
+
+One syntax, unified, everywhere!
+
+## Contents
+
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [See It In Action](#see-it-in-action)
+- [The Markdown Format](#the-markdown-format)
+- [Features](#features)
+- [Settings](#settings)
+- [Commands](#commands)
+- [FAQ](#faq)
+- [Troubleshooting](#troubleshooting)
+- [Changelog](#changelog)
+- [Support & Community](#support--community)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -32,14 +49,14 @@ Install from the VS Code Marketplace:
 Or use Quick Open (`Ctrl`+`P` / `Cmd`+`P`):
 
 ```bash
-ext install unified-kanban
+ext install divisionseven.unified-kanban
 ```
 
 ## Getting Started
 
 ### Opening a Board
 
-**Recommended use:** This extension is designed to work with markdown kanban boards — either boards you created with this extension or with the [obsidian-kanban plugin](https://github.com/obsidian-community/obsidian-kanban). These files contain YAML frontmatter with `kanban-plugin: basic`.
+**Recommended use:** This extension is designed to work with markdown kanban boards — either boards you created with this extension or with the [obsidian-kanban plugin][obsidian-kanban-plugin]. These files contain YAML frontmatter with `kanban-plugin: basic`.
 
 1. Right-click any `.md` kanban file in the Explorer
 2. Select **Open With...** → **Kanban Board**
@@ -53,22 +70,57 @@ If you open a non-kanban `.md` file, the extension will attempt to render any `#
 
 **Compatibility note:** While Unified Kanban is flexible about the YAML frontmatter section being included, the Obsidian kanban plugin requires proper YAML frontmatter to recognise the document as a kanban board. Any new boards created using this extension will include **all** required fields to work perfectly in both Obsidian and here.
 
-## Screenshots
+## See It In Action
 
-<!-- TODO: Add screenshots -->
-<!--
-Required screenshots:
-1. Board view showing columns and cards - capture the main kanban board with at least 3 columns
-2. Card detail view - show a card expanded with tags, dates, and metadata visible
-3. Settings panel - show the settings/configuration UI
+### Basic Usage
 
-Place images in: docs/assets/
-Recommended format: PNG, 1200px width for good readability
--->
+See how Unified Kanban turns markdown files into interactive kanban boards.
 
-### The Markdown Format
+<p align="center">
+  <img src="docs/assets/demos/gifs/demo-basic-usage.gif" alt="Creating and managing kanban boards with drag-and-drop" width="800">
+</p>
 
-Unified Kanban uses the same markdown format as the popular [obsidian-kanban plugin](https://github.com/obsidian-community/obsidian-kanban). Using this extension, your boards are now seamlessly portable between Obsidian and VS Code.
+<p align="center"><sub>Create boards → Add cards with markdown → Drag to reorder → Archive when done</sub></p>
+
+### Theme Support
+
+Unified Kanban automatically adapts to your editor's color theme.
+
+<p align="center">
+  <img src="docs/assets/demos/screenshots/ultradark-theme-example.png" alt="Ultra dark theme" width="400"> <img src="docs/assets/demos/screenshots/dark-theme-example.png" alt="Dark theme" width="400"> <img src="docs/assets/demos/screenshots/light-theme-example.png" alt="Light theme" width="400">
+</p>
+
+<p align="center"><sub>Watch Unified Kanban seamlessly match your editor's color scheme — light, dark, or ultra dark</sub></p>
+
+<p align="center">
+  <img src="docs/assets/demos/gifs/demo-native-color-theme-adoption.gif" alt="Automatic theme switching" width="700">
+</p>
+
+<p align="center"><sub>The extension detects your active theme and instantly updates colors in real-time</sub></p>
+
+### View Modes
+
+Three views to match your workflow — Board for visual planning, List for quick scanning, Table for detailed overviews.
+
+<p align="center">
+  <img src="docs/assets/demos/screenshots/list-view-example.png" alt="List view" width="400"> <img src="docs/assets/demos/screenshots/table-view-example.png" alt="Table view" width="515">
+</p>
+
+<p align="center"><sub>Switch between Board, List, and Table views at any time</sub></p>
+
+### Rich Markdown Editing
+
+Open the original markdown document with one click. Edit in the kanban editor, or with full markdown support.
+
+<p align="center">
+  <img src="docs/assets/demos/gifs/demo-editing-markdown.gif" alt="Inline markdown editing" width="600">
+</p>
+
+<p align="center"><sub>Rich text, tags, dates, checklists, and custom fields — all inline</sub></p>
+
+## The Markdown Format
+
+Unified Kanban uses the same markdown format as the popular [obsidian-kanban plugin][obsidian-kanban-format]. Using this extension, your boards are now seamlessly portable between Obsidian and VS Code.
 
 ```markdown
 ---
@@ -108,16 +160,16 @@ kanban-plugin: basic
 
 ## Features
 
-Unified Kanban includes 22 features for your project boards:
+Unified Kanban includes 20+ features for your project boards:
 
 - **Drag-and-drop** — Reorder cards and columns with intuitive drag interactions
 - **Three view modes** — Board, Table, and List views to match your workflow
 - **Rich content** — Tags, dates, wikilinks, and custom metadata with inline editing
 - **Per-board settings** — 30+ customization options including themes, dates, and behavior
-- **Theme-aware design** — Works with light and dark themes with round-trip fidelity
+- **Theme-aware design** — Automatically adapts to your active VS Code color theme
 - **Archive system** — Organize completed cards with date-stamped archives
 
-[View all 20+ features →](docs/FEATURES.md)
+[View all 20+ features →][features]
 
 ## Settings
 
@@ -176,66 +228,95 @@ Per-board settings are configured via the gear icon in the board toolbar and sto
 
 ## FAQ
 
-For additional questions and solutions, see the [FAQ documentation](docs/FAQ.md).
+For additional questions and solutions, see the [FAQ documentation][faq].
 
 ### How do I exclude kanban files from markdown linters?
 
-Since kanban files use non-standard markdown syntax, linters may flag them with errors. For full instructions on configuring your specific linter, see the [FAQ documentation](docs/FAQ.md).
+Since kanban files use non-standard markdown syntax, linters may flag them with errors. For full instructions on configuring your specific linter, see the [FAQ documentation][faq].
 
 **Quick patterns that work:**
 
 - Use filename patterns (e.g., `*board*.md`, `*-kanban.md`)
 - Exclude the kanban directory (e.g., `kanban/`, `boards/`)
 
-### Recommended Workflow
-
-**Creating a new board:**
-
-1. Use **Kanban: New Board** from the Command Palette
-2. This creates a new `.md` file with all required YAML frontmatter (`kanban-plugin: basic`)
-3. The file is ready to use in both this extension and Obsidian
-
-**Opening an existing board:**
-
-- Right-click any `.md` file with `kanban-plugin: basic` frontmatter in the Explorer
-- Select **Open With...** → **Kanban Board**
-- The board will render with all kanban features
-
-**What if I open a regular `TODO.md` or other markdown document (without YAML frontmatter)?**
-
-- The extension will attempt to render `##` headings as columns and `- [ ]` items as cards
-- Anything else in the file will be ignored
-- If you change any board settings, the extension will automatically add the required settings footer to your document
-- However, many features (settings, archive, etc.) may require the proper frontmatter to be added
-
 ## Troubleshooting
 
-Having issues? Check the [FAQ](docs/FAQ.md) for common questions and solutions.
+Having issues? Check the [FAQ][faq] for common questions and solutions.
+
+## Changelog
+
+See [CHANGELOG.md][changelog] for the full release history and version notes.
 
 ## Support & Community
 
-[![GitHub issues](https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&style=plastic)](https://github.com/divisionseven/unified-kanban/issues)
-[![GitHub discussions](https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&style=plastic)](https://github.com/divisionseven/unified-kanban/discussions)
+[![GitHub issues][github-issues-badge]][github-issues]
+[![GitHub discussions][github-discussions-badge]][github-discussions]
 
-- [Report issues](https://github.com/divisionseven/unified-kanban/issues)
-- [Join discussions](https://github.com/divisionseven/unified-kanban/discussions)
+- [Report issues][report-issues]
+- [Join discussions][join-discussions]
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, code style, and how to submit changes.
+See [CONTRIBUTING.md][contributing] for development setup, code style, and how to submit changes.
 
 ## License
 
-Unified Kanban is distributed under the [MIT License](LICENSE)
+Unified Kanban is distributed under the [MIT License][license]
 
 ## Acknowledgments
 
-- [Obsidian](https://obsidian.md) — the amazing note-taking app that inspired this project
-- [obsidian-kanban](https://github.com/obsidian-community/obsidian-kanban) — the established markdown format that makes this project possible
-- [dnd-kit](https://github.com/clauderic/dnd-kit) — drag-and-drop library
-- [Lucide](https://lucide.dev) — beautiful open-source icons
-- [VS Code Extension API](https://code.visualstudio.com/api) — documentation and samples
+- [Obsidian][obsidian] — the amazing note-taking app that inspired this project
+- [obsidian-kanban][obsidian-kanban-plugin] — the established markdown format that makes this project possible
+- [dnd-kit][dnd-kit] — drag-and-drop library
+- [Lucide][lucide] — beautiful open-source icons
+- [VS Code Extension API][vscode-api] — documentation and samples
 
 ## Disclaimer
 
-> Unified Kanban is not affiliated with [Obsidian](https://obsidian.md) or with the [obsidian-kanban](https://github.com/obsidian-community/obsidian-kanban) plugin.
+> Unified Kanban is not affiliated with [Obsidian][obsidian] or with the [obsidian-kanban][obsidian-kanban-plugin] plugin.
+
+---
+
+<!-- Header Badges -->
+
+[vscode-marketplace-badge]: https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code
+[vscode-version-badge]: https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic
+[typescript-badge]: https://img.shields.io/badge/TypeScript-5.x-8A2BE2?style=plastic&logo=typescript&logoColor=white
+[react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white
+[coverage-badge]: https://img.shields.io/badge/Coverage-90%25-8A2BE2?style=plastic&logo=codecov&logoColor=white
+[tests-badge]: https://img.shields.io/badge/tests-484_passing-8A2BE2.svg?logo=vitest&logoColor=white&style=plastic
+[version-badge]: https://img.shields.io/badge/Version-0.6.1-black.svg?style=plastic
+[license-badge]: https://img.shields.io/badge/License-MIT-black.svg?style=plastic
+[github-issues-badge]: https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&style=plastic
+[github-discussions-badge]: https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&style=plastic
+
+<!-- VS Code -->
+
+[vscode-marketplace]: https://marketplace.visualstudio.com/items?itemName=divisionseven.unified-kanban
+[vscode-version]: https://code.visualstudio.com/
+[vscode-api]: https://code.visualstudio.com/api
+
+<!-- GitHub -->
+
+[github-repo]: https://github.com/divisionseven/unified-kanban
+[github-issues]: https://github.com/divisionseven/unified-kanban/issues
+[github-discussions]: https://github.com/divisionseven/unified-kanban/discussions
+[report-issues]: https://github.com/divisionseven/unified-kanban/issues
+[join-discussions]: https://github.com/divisionseven/unified-kanban/discussions
+
+<!-- Acknowledgments -->
+
+[obsidian]: https://obsidian.md
+[obsidian-kanban-plugin]: https://github.com/mgmeyers/obsidian-kanban
+[obsidian-kanban-format]: https://github.com/mgmeyers/obsidian-kanban
+[dnd-kit]: https://github.com/clauderic/dnd-kit
+[lucide]: https://lucide.dev
+[vitest]: https://vitest.dev/
+
+<!-- Documentation -->
+
+[license]: LICENSE
+[features]: docs/FEATURES.md
+[faq]: docs/FAQ.md
+[changelog]: CHANGELOG.md
+[contributing]: CONTRIBUTING.md
