@@ -21,10 +21,10 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Install webview dependencies
-        run: cd webview-ui && npm ci
+        run: cd webview-ui && npm ci --legacy-peer-deps
 
       - name: Type check
         run: npm run check
