@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/assets/brand/banner.png" alt="Unified Kanban" width="250">
+  <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/brand/banner.png" alt="Unified Kanban" width="250">
 
 # Unified Kanban
 
@@ -77,7 +77,7 @@ If you open a non-kanban `.md` file, the extension will attempt to render any `#
 See how Unified Kanban turns markdown files into interactive kanban boards.
 
 <p align="center">
-  <img src="docs/assets/demos/gifs/demo-basic-usage.gif" alt="Creating and managing kanban boards with drag-and-drop" width="800">
+  <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/gifs/demo-basic-usage.gif" alt="Creating and managing kanban boards with drag-and-drop" width="800">
 </p>
 
 <p align="center"><sub>Create boards → Add cards with markdown → Drag to reorder → Archive when done</sub></p>
@@ -87,13 +87,13 @@ See how Unified Kanban turns markdown files into interactive kanban boards.
 Unified Kanban automatically adapts to your editor's color theme.
 
 <p align="center">
-  <img src="docs/assets/demos/screenshots/ultradark-theme-example.png" alt="Ultra dark theme" width="400"> <img src="docs/assets/demos/screenshots/dark-theme-example.png" alt="Dark theme" width="400"> <img src="docs/assets/demos/screenshots/light-theme-example.png" alt="Light theme" width="400">
+  <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/screenshots/ultradark-theme-example.png" alt="Ultra dark theme" width="400"> <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/screenshots/dark-theme-example.png" alt="Dark theme" width="400"> <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/screenshots/light-theme-example.png" alt="Light theme" width="400">
 </p>
 
 <p align="center"><sub>Watch Unified Kanban seamlessly match your editor's color scheme — light, dark, or ultra dark</sub></p>
 
 <p align="center">
-  <img src="docs/assets/demos/gifs/demo-native-color-theme-adoption.gif" alt="Automatic theme switching" width="700">
+  <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/gifs/demo-native-color-theme-adoption.gif" alt="Automatic theme switching" width="700">
 </p>
 
 <p align="center"><sub>The extension detects your active theme and instantly updates colors in real-time</sub></p>
@@ -103,7 +103,7 @@ Unified Kanban automatically adapts to your editor's color theme.
 Three views to match your workflow — Board for visual planning, List for quick scanning, Table for detailed overviews.
 
 <p align="center">
-  <img src="docs/assets/demos/screenshots/list-view-example.png" alt="List view" width="400"> <img src="docs/assets/demos/screenshots/table-view-example.png" alt="Table view" width="515">
+  <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/screenshots/list-view-example.png" alt="List view" width="400"> <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/screenshots/table-view-example.png" alt="Table view" width="515">
 </p>
 
 <p align="center"><sub>Switch between Board, List, and Table views at any time</sub></p>
@@ -113,7 +113,7 @@ Three views to match your workflow — Board for visual planning, List for quick
 Open the original markdown document with one click. Edit in the kanban editor, or with full markdown support.
 
 <p align="center">
-  <img src="docs/assets/demos/gifs/demo-editing-markdown.gif" alt="Inline markdown editing" width="600">
+  <img src="https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/demos/gifs/demo-editing-markdown.gif" alt="Inline markdown editing" width="600">
 </p>
 
 <p align="center"><sub>Rich text, tags, dates, checklists, and custom fields — all inline</sub></p>
@@ -285,7 +285,7 @@ Unified Kanban is distributed under the [MIT License][license-link]
 [react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white
 [codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&style=plastic&color=8A2BE2&logoColor=white
 [ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&style=plastic&color=8A2BE2&logoColor=white
-[version-badge]: https://img.shields.io/badge/Version-0.6.1-8A2BE2.svg?style=plastic&logo=git&color=8A2BE2&logoColor=white
+[version-badge]: https://img.shields.io/badge/Version-0.7.0-8A2BE2.svg?style=plastic&logo=git&color=8A2BE2&logoColor=white
 [license-badge]: https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=open-source-initiative&color=8A2BE2&logoColor=white
 
 <!-- Body Badges -->

@@ -2,7 +2,7 @@
   "name": "unified-kanban",
   "displayName": "Unified Kanban",
   "publisher": "divisionseven",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Unifying kanban syntax for markdown — one board format, beautiful results across Obsidian and VS Code",
   "license": "MIT",
   "main": "./dist/extension.js",

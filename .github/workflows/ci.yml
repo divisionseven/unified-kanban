@@ -14,15 +14,40 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-      - run: npm ci
-      - run: cd webview-ui && npm ci
-      - run: npm run check
-      - run: npm run lint
-      - run: npm test
-      - name: Run webview tests
-        run: cd webview-ui && npx vitest run
-      - run: npm run build
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install webview dependencies
+        run: cd webview-ui && npm ci
+
+      - name: Type check
+        run: npm run check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run extension tests with coverage
+        run: npx vitest run --coverage
+
+      - name: Run webview tests with coverage
+        run: cd webview-ui && npx vitest run --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info,./webview-ui/coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+          verbose: true
+        continue-on-error: true
+
+      - name: Build
+        run: npm run build
