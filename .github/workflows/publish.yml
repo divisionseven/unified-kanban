@@ -17,9 +17,9 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm ci
+      - run: npm ci --legacy-peer-deps
 
-      - run: cd webview-ui && npm ci
+      - run: cd webview-ui && npm ci --legacy-peer-deps
 
       - run: npm run check
 
