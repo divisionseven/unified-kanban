@@ -34,6 +34,7 @@ Every markdown kanban extension on VS Code invents its own unique syntax. Switch
 - [Commands](#commands)
 - [FAQ](#faq)
 - [Troubleshooting](#troubleshooting)
+- [Releases](#releases)
 - [Changelog](#changelog)
 - [Support & Community](#support--community)
 - [Contributing](#contributing)
@@ -243,6 +244,16 @@ Since kanban files use non-standard markdown syntax, linters may flag them with 
 
 Having issues? Check the [FAQ][faq-link] for common questions and solutions.
 
+## Releases
+
+This project uses automated releases:
+
+- **commitlint** validates commit messages follow conventional commits format
+- **standard-version** automatically bumps versions and generates changelogs
+- **Dependabot** scans dependencies for security vulnerabilities
+
+For contributors, the release process is documented in [CONTRIBUTING.md][contributing-link].
+
 ## Changelog
 
 See [CHANGELOG.md][changelog-link] for the full release history and version notes.
@@ -285,7 +296,7 @@ Unified Kanban is distributed under the [MIT License][license-link]
 [react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white
 [codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&style=plastic&color=8A2BE2&logoColor=white
 [ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&style=plastic&color=8A2BE2&logoColor=white
-[version-badge]: https://img.shields.io/badge/Version-0.7.0-8A2BE2.svg?style=plastic&logo=git&color=8A2BE2&logoColor=white
+[version-badge]: https://img.shields.io/badge/Version-0.7.1-8A2BE2.svg?style=plastic&logo=git&color=8A2BE2&logoColor=white
 [license-badge]: https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=open-source-initiative&color=8A2BE2&logoColor=white
 
 <!-- Body Badges -->

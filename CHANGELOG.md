@@ -35,6 +35,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add commitlint (advisory) with conventional commits for commit message validation
+- Add Dependabot for dependency vulnerability scanning
+
+### Changed
+
+- Update publish.yml with version verification step
+
 ---
 
 ## [0.6.1] - 2026-04-11

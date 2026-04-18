@@ -2,7 +2,7 @@
   "name": "unified-kanban",
   "displayName": "Unified Kanban",
   "publisher": "divisionseven",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Unifying kanban syntax for markdown — one board format, beautiful results across Obsidian and VS Code",
   "license": "MIT",
   "main": "./dist/extension.js",
@@ -363,6 +363,8 @@
     }
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@types/node": "^25.5.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
@@ -377,6 +379,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
+    "standard-version": "^9.5.0",
     "typescript": "^5.7.3",
     "vite": "^7.3.2",
     "vitest": "^4.1.2"

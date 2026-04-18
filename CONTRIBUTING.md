@@ -189,13 +189,15 @@ Use `kanban.switchView` instead.
 
 ### Version Bumping
 
-When cutting a release:
+This project uses [standard-version](https://github.com/conventional-changelog/standard-version) for automated releases:
 
-1. Move content from `## [Unreleased]` into `## [x.y.z] - YYYY-MM-DD`
-2. Add a fresh empty `## [Unreleased]` at the top
-3. Bump version in `package.json`
-4. Commit with message: `chore(release): bump version to x.y.z`
-5. Tag with: `git tag -a vx.y.z -m "Release x.y.z"`
+1. Ensure all changes are documented in `CHANGELOG.md` under `## [Unreleased]`
+2. Run the **Release PR Preview** workflow manually in GitHub Actions to see the changelog output
+3. When ready to release, run `npx standard-version` locally
+4. Push with `git push --follow-tags`
+5. GitHub Actions will automatically publish to npm
+
+The release workflow handles version bumping, changelog generation, and npm publishing automatically.
 
 ### Version Increment Guide
 

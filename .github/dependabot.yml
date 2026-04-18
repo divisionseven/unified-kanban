@@ -1,0 +1,25 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    auto-merge-method: squash
+    labels:
+      - dependencies
+      - security
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: npm
+    directory: /webview-ui
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    auto-merge-method: squash
+    labels:
+      - dependencies
+      - security
+    commit-message:
+      prefix: chore
