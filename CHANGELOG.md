@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fix `release.yml` logo path to resolve release header logo image not displaying correctly
+
+### Changed
+
+- Change README to use dynamic release version badge instead of static version badge
+
 ---
 
 ## [0.7.2] - 2026-04-19

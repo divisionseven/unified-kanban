@@ -40,8 +40,8 @@ concurrency:
 env:
   PROJECT_NAME: "unified-kanban"
   REPO: "${{ github.repository }}"
-  LOGO_LIGHT: "https://raw.githubusercontent.com/divisionseven/unifiedkanban/main/docs/assets/brand/banner.png"
-  LOGO_DARK: "https://raw.githubusercontent.com/divisionseven/unifiedkanban/main/docs/assets/brand/banner.png"
+  LOGO_LIGHT: "https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/brand/banner.png"
+  LOGO_DARK: "https://raw.githubusercontent.com/divisionseven/unified-kanban/main/docs/assets/brand/banner.png"
   LOGO_WIDTH: "200"
 
 # ──────────────────────────────────────────────────────────────────────────────

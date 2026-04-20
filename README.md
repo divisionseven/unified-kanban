@@ -7,9 +7,9 @@
 
 [![TypeScript][typescript-badge]][github-repo-link]
 [![React][react-badge]][github-repo-link]
-[![Version][version-badge]][github-repo-link]
 [![License: MIT][license-badge]][license-link]
 [![Coverage][codecov-badge]][codecov-badge-link]
+[![Version][release-version-badge]][github-releases-link]
 [![CI][ci-badge]][github-ci-badge-link]
 
 [![VS Code Marketplace][vscode-marketplace-badge]][vscode-marketplace-link]
@@ -296,7 +296,7 @@ Unified Kanban is distributed under the [MIT License][license-link]
 [react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white
 [codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&style=plastic&color=8A2BE2&logoColor=white
 [ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&style=plastic&color=8A2BE2&logoColor=white
-[version-badge]: https://img.shields.io/badge/Version-0.7.1-8A2BE2.svg?style=plastic&logo=git&color=8A2BE2&logoColor=white
+[release-version-badge]: https://img.shields.io/github/v/release/divisionseven/unified-kanban?&style=plastic&logo=github&color=8A2BE2&logoColor=white
 [license-badge]: https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=open-source-initiative&color=8A2BE2&logoColor=white
 
 <!-- Body Badges -->
@@ -318,6 +318,7 @@ Unified Kanban is distributed under the [MIT License][license-link]
 <!-- GitHub Repo -->
 
 [github-repo-link]: https://github.com/divisionseven/unified-kanban
+[github-releases-link]: https://github.com/divisionseven/unified-kanban/releases
 [github-issues-link]: https://github.com/divisionseven/unified-kanban/issues
 [github-discussions-link]: https://github.com/divisionseven/unified-kanban/discussions
 
