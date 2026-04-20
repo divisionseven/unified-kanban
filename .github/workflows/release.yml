@@ -90,11 +90,34 @@ jobs:
         run: npm run build
 
       # ── Package VSIX ───────────────────────────────────────────
+      - name: Verify build output exists
+        id: verify-build
+        run: |
+          echo "=== Checking build output ==="
+          if [ -f "dist/extension.js" ]; then
+            echo "✅ dist/extension.js exists"
+            ls -la dist/
+          else
+            echo "❌ dist/extension.js NOT FOUND"
+            echo "Contents of dist/:"
+            ls -la dist/ 2>&1 || echo "dist/ directory does not exist"
+            echo "Contents of root:"
+            ls -la
+            exit 1
+          fi
+          echo "=== Extension entry point check ==="
+          cat package.json | grep '"main"'
+          echo "=== Listing package.json files ==="
+          npx @vscode/vsce ls 2>&1 || echo "vsce ls failed"
+
       - name: Package VSIX
         id: package
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          npx @vscode/vsce package --version "$VERSION"
+          echo "=== Running vsce package (verbose) ==="
+          npx @vscode/vsce package --version "$VERSION" --verbose || { echo "VSCE package failed"; exit 1; }
+          echo "=== VSIX files created ==="
+          ls -la *.vsix 2>&1 || { echo "No VSIX file found"; exit 1; }
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "vsix_file=$(ls *.vsix)" >> $GITHUB_OUTPUT
 
