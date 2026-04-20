@@ -1,43 +1,76 @@
-name: CI
+# ──────────────────────────────────────────────────────────────────────────────
+# .github/workflows/ci.yml
+#
+# CI Pipeline — Build, Lint, Type Check, and Test
+# ──────────────────────────────────────────────────────────────────────────────
+# Trigger:
+#   (a) Push to main branch
+#   (b) Pull requests targeting main
+#   (c) workflow_call — called by release.yml to verify tests before publishing
+#
+# Jobs:
+#   build-and-test — Runs on ubuntu-latest, macos-latest, windows-latest
+#     • Installs root + webview-ui dependencies
+#     • Type check, lint, test with coverage
+#     • Uploads coverage to Codecov
+#     • Builds the extension
+#
+# Concurrency: Cancels in-progress runs on the same branch to save resources.
+# ──────────────────────────────────────────────────────────────────────────────
+
+name: ♻️ CI
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_call:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# ──────────────────────────────────────────────────────────────────────────────
 jobs:
   build-and-test:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
+
     steps:
+      # ── Checkout ───────────────────────────────────────────────────────────
       - uses: actions/checkout@v4
 
+      # ── Setup Node.js ───────────────────────────────────────────────────────
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
+      # ── Install Dependencies ─────────────────────────────────────────────────
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
       - name: Install webview dependencies
         run: cd webview-ui && npm ci --legacy-peer-deps
 
+      # ── Type Check & Lint ──────────────────────────────────────────────────
       - name: Type check
         run: npm run check
 
       - name: Lint
         run: npm run lint
 
+      # ── Run Tests ───────────────────────────────────────────────────────────
       - name: Run extension tests with coverage
         run: npx vitest run --coverage
 
       - name: Run webview tests with coverage
         run: cd webview-ui && npx vitest run --coverage
 
+      # ── Upload Coverage ─────────────────────────────────────────────────────
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
@@ -49,5 +82,6 @@ jobs:
           verbose: true
         continue-on-error: true
 
+      # ── Build ───────────────────────────────────────────────────────────────
       - name: Build
         run: npm run build

@@ -5,6 +5,47 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+---
+
+## [Unreleased]
+
+---
+
+## [0.7.2] - 2026-04-19
+
+### Added
+
+- Add validation scripts for version consistency (`.github/scripts/check-version.py`)
+- Add changelog extraction script for proper release notes (`.github/scripts/extract-changelog.py`)
+- Add build-release-notes.py for professional GitHub Release body with logo and commit history
+- Add pre-release tag support in CI workflow
+- Add GH social preview banner to repo assets
+
+### Changed
+
+- Restructure and enhance publish workflow (now `release.yml`) with 5-job pipeline (validation gate before release)
+- Improve project description in `package.json` for consistency on VSC Marketplace
+- Enhance root README
+
+### Removed
+
+- Remove `update-version-badge.yml` workflow
+
+---
+
+## [0.7.1] - 2026-04-18
+
+### Added
+
+- Add commitlint (advisory) with conventional commits for commit message validation
+- Add Dependabot for dependency vulnerability scanning
+
+### Changed
+
+- Update publish.yml with version verification step
+
+---
+
 ## [0.7.0] - 2026-04-16
 
 ### Added
@@ -30,19 +71,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Remove test-board.md fixture
-
----
-
-## [Unreleased]
-
-### Added
-
-- Add commitlint (advisory) with conventional commits for commit message validation
-- Add Dependabot for dependency vulnerability scanning
-
-### Changed
-
-- Update publish.yml with version verification step
 
 ---
 

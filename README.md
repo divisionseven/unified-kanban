@@ -13,7 +13,7 @@
 [![CI][ci-badge]][github-ci-badge-link]
 
 [![VS Code Marketplace][vscode-marketplace-badge]][vscode-marketplace-link]
-[![VS Code][vscode-version-badge]][vscode-link]
+[![VS Code Version][vscode-version-badge]][vscode-link]
 
 </div>
 
@@ -21,7 +21,7 @@
 
 Every markdown kanban extension on VS Code invents its own unique syntax. Switching between Obsidian and Visual Studio Code means rewriting your boards from scratch. It's impossible to learn one _standard_ markdown syntax to use when creating kanban boards. The [Obsidian Kanban][obsidian-kanban-plugin-link] plugin has emerged as the de facto standard — battle-tested and widely adopted. **Unified Kanban** bridges the gap, finally bringing that proven format to VS Code so your boards work identically in both editors.
 
-**One kanban format, unified!**
+One simple kanban format, now **unified**.
 
 ## Contents
 

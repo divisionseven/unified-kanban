@@ -64,3 +64,4 @@ venv/
 
 # Project-Specific Internal Files
 internal_documentation/*
+plans/*
