@@ -4,16 +4,23 @@
 .prettierrc
 .nvmrc
 .gitattributes
+.gitignore
 eslint.config.js
 tsconfig.json
 tsconfig.extension.json
 vitest.config.ts
+
+# Dependencies (installed at runtime, not needed in extension)
+node_modules/
+webview-ui/node_modules/
 
 # Project docs (not needed in extension)
 CONTRIBUTING.md
 CODE_OF_CONDUCT.md
 SECURITY.md
 SUPPORT.md
+docs/
+plans/
 internal_documentation/
 test-board.md
 *.vsix
@@ -55,3 +62,10 @@ coverage/
 # Cache
 .eslintcache
 .prettiercache
+.ruff_cache/
+
+# Husky (git hooks not needed in extension)
+.husky/
+
+# Test files
+*.test.ts
