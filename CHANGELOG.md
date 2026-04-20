@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Remove `update-version-badge.yml` workflow
 
+### Fixed
+
+- Fix release.yml vsce packaging failure by removing invalid --version flag from vsce package command
+- Pin vsce to version 3.3.2 to avoid silent failure bugs in newer versions
+- Add package content validation to catch silent vsce failures early
+
 ---
 
 ## [0.7.1] - 2026-04-18

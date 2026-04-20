@@ -105,21 +105,32 @@ jobs:
             ls -la
             exit 1
           fi
-          echo "=== Extension entry point check ==="
-          cat package.json | grep '"main"'
-          echo "=== Listing package.json files ==="
-          npx @vscode/vsce ls 2>&1 || echo "vsce ls failed"
+
+      - name: Install vsce (pin to stable version)
+        run: npm install -g @vscode/vsce@3.3.2
+
+      - name: List package files (verify extension manifest)
+        run: vsce ls
 
       - name: Package VSIX
         id: package
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          echo "=== Running vsce package (verbose) ==="
-          npx @vscode/vsce package --version "$VERSION" --verbose || { echo "VSCE package failed"; exit 1; }
+          echo "=== Running vsce package ==="
+          vsce package || { echo "VSCE package failed"; exit 1; }
           echo "=== VSIX files created ==="
           ls -la *.vsix 2>&1 || { echo "No VSIX file found"; exit 1; }
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "vsix_file=$(ls *.vsix)" >> $GITHUB_OUTPUT
+
+      - name: Verify package contents (catch silent failures)
+        run: |
+          VSIX_FILE=$(ls *.vsix)
+          echo "=== Verifying $VSIX_FILE contents ==="
+          unzip -l "$VSIX_FILE" > /tmp/vsix-contents.txt
+          grep -q "extension/package.json" /tmp/vsix-contents.txt || { echo "ERROR: Missing extension/package.json"; exit 1; }
+          grep -q "extension/dist/extension.js" /tmp/vsix-contents.txt || { echo "ERROR: Missing extension/dist/extension.js"; exit 1; }
+          echo "✅ Package contents verified"
 
       # ── Create GitHub Release ────────────────────────────────────────
       # Build professional release notes with logo, changelog, and commit history
@@ -170,14 +181,15 @@ jobs:
       # ── Publish to VS Code Marketplace ───────────────────────────────
       - name: Publish to VS Code Marketplace
         run: |
-          npx @vscode/vsce publish --file *.vsix
+          vsce publish --file *.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
 
-      # ── Publish to Open VSX ────────────────────────────────────────
+      # ── Publish to Open VSX ───────────────────────────────────────
       - name: Publish to Open VSX Registry
         run: |
-          npx ovsx publish *.vsix
+          npm install -g ovsx
+          ovsx publish *.vsix
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
 
