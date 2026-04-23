@@ -202,7 +202,7 @@ def build_body(
 
     sections.append("---")
     sections.append(
-        f"**Full changelog:** https://github.com/{repo}/blob/main/CHANGELOG.md"
+        f"[View Full Changelog ->](https://github.com/{repo}/blob/main/CHANGELOG.Md)"
     )
 
     return "\n\n".join(sections) + "\n"
