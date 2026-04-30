@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Extension activation failure on fresh install: replaced tsc-only build with esbuild bundler that inlines all npm dependencies into `dist/extension.js`; Resolves [#26 — v0.7.2 fails to activate: `Cannot find module 'mdast-util-from-markdown'`](https://github.com/divisionseven/unified-kanban/issues/26)
 - Fix `release.yml` logo path to resolve release header logo image not displaying correctly
+- Build output tests failing in CI when `dist/extension.js` not yet built: use `describe.skipIf()` for graceful skip
+- TypeScript 6.0.3 compatibility: update `tsconfig` `moduleResolution` to `"bundler"`, `module` to `"esnext"`, and add explicit node types
 
 ### Changed
 
