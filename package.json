@@ -46,7 +46,8 @@
     "test:watch": "vitest",
     "test:all": "npm test && cd webview-ui && npx vitest run",
     "build:webview": "cd webview-ui && npx vite build",
-    "build:extension": "tsc -p tsconfig.extension.json",
+    "build:extension": "node esbuild.js",
+    "typecheck": "tsc -p tsconfig.extension.json --noEmit",
     "build": "npm run build:webview && npm run build:extension",
     "watch": "tsc -p tsconfig.extension.json --watch",
     "check": "tsc --noEmit",
@@ -66,12 +67,6 @@
     "*.{json,md,yml,yaml,css}": [
       "prettier --write"
     ]
-  },
-  "exports": {
-    "./parser": {
-      "require": "./dist/parser/index.js",
-      "types": "./dist/parser/index.d.ts"
-    }
   },
   "contributes": {
     "customEditors": [
@@ -373,6 +368,7 @@
     "@typescript-eslint/parser": "^8.59.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^4.1.4",
+    "esbuild": "^0.28.0",
     "eslint": "^10.2.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",

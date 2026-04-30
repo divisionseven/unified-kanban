@@ -10,7 +10,7 @@ tsconfig.json
 tsconfig.extension.json
 vitest.config.ts
 
-# Dependencies (installed at runtime, not needed in extension)
+# Dependencies — bundled into dist/extension.js by esbuild, not shipped separately
 node_modules/
 webview-ui/node_modules/
 

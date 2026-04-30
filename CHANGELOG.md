@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Extension activation failure on fresh install: replaced tsc-only build with esbuild bundler that inlines all npm dependencies into `dist/extension.js`; Resolves [#26 — v0.7.2 fails to activate: `Cannot find module 'mdast-util-from-markdown'`](https://github.com/divisionseven/unified-kanban/issues/26)
 - Fix `release.yml` logo path to resolve release header logo image not displaying correctly
 
 ### Changed

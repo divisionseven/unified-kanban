@@ -11,7 +11,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "declaration": true,
+    "declaration": false,
     "types": ["vscode", "node"],
     "skipLibCheck": true
   },
