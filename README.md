@@ -14,6 +14,7 @@
 
 [![VS Code Marketplace][vscode-marketplace-badge]][vscode-marketplace-link]
 [![VS Code Version][vscode-version-badge]][vscode-link]
+[![Open VSX Downloads][ovsx-downloads-badge]][ovsx-link]
 
 </div>
 
@@ -41,7 +42,7 @@ One simple kanban format, now **unified**.
 
 ## Installation
 
-Install from the VS Code Marketplace:
+### Install from the VS Code Marketplace:
 
 1. Open the **Extensions** sidebar (`Ctrl`+`Shift`+`X` / `Cmd`+`Shift`+`X`)
 2. Search for **Unified Kanban**
@@ -52,6 +53,22 @@ Or use Quick Open (`Ctrl`+`P` / `Cmd`+`P`):
 ```bash
 ext install divisionseven.unified-kanban
 ```
+
+### Install from the Open VSX Registry (for VS Codium and other compatible editors):
+
+1. Open the **Extensions** sidebar
+2. Search for **Unified Kanban**
+3. Click **Install**
+
+Or via the command line:
+
+```bash
+ovsx get divisionseven.unified-kanban
+```
+
+> [!Note]
+> The `ovsx get` command requires the [ovsx CLI][osvx-cli-docs-link].
+> Alternatively, you can install directly from [open-vsx.org][ovsx-link].
 
 ## Getting Started
 
@@ -262,9 +279,12 @@ See [CHANGELOG.md][changelog-link] for the full release history and version note
 
 [![GitHub issues][github-issues-badge]][github-issues-link]
 [![GitHub discussions][github-discussions-badge]][github-discussions-link]
+[![Open VSX Downloads][ovsx-downloads-badge]][ovsx-link]
 
 - [Report issues][github-issues-link]
 - [Join discussions][github-discussions-link]
+- [Review on Open VSX][ovsx-link]
+- [Review on VS Code Marketplace][vscode-marketplace-link]
 
 ## Contributing
 
@@ -290,25 +310,31 @@ Unified Kanban is distributed under the [MIT License][license-link]
 
 <!-- Header Badges -->
 
-[vscode-marketplace-badge]: https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code
-[vscode-version-badge]: https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic
 [typescript-badge]: https://img.shields.io/badge/TypeScript-5.x-8A2BE2?style=plastic&logo=typescript&logoColor=white
 [react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white
-[codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&style=plastic&color=8A2BE2&logoColor=white
-[ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&style=plastic&color=8A2BE2&logoColor=white
-[release-version-badge]: https://img.shields.io/github/v/release/divisionseven/unified-kanban?&style=plastic&logo=github&color=8A2BE2&logoColor=white
-[license-badge]: https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=open-source-initiative&color=8A2BE2&logoColor=white
+[license-badge]: https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=open-source-initiative&color=8A2BE2&logoColor=white&label=License
+[codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&style=plastic&color=8A2BE2&logoColor=white&label=Coverage
+[ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&style=plastic&color=8A2BE2&logoColor=white&label=Build
+[release-version-badge]: https://img.shields.io/github/v/release/divisionseven/unified-kanban?&style=plastic&logo=github&color=8A2BE2&logoColor=white&label=Release
+[vscode-marketplace-badge]: https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code
+[vscode-version-badge]: https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic
+[ovsx-downloads-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Downloads
 
 <!-- Body Badges -->
 
-[github-issues-badge]: https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&style=plastic
-[github-discussions-badge]: https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&style=plastic
+[github-issues-badge]: https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Issues
+[github-discussions-badge]: https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Discussions
 
 <!-- VS Code -->
 
 [vscode-marketplace-link]: https://marketplace.visualstudio.com/items?itemName=divisionseven.unified-kanban
 [vscode-api-link]: https://code.visualstudio.com/api
 [vscode-link]: https://code.visualstudio.com/
+
+<!-- Open VSX Registry -->
+
+[ovsx-link]: https://open-vsx.org/extension/divisionseven/unified-kanban
+[osvx-cli-docs-link]: https://github.com/eclipse-openvsx/openvsx/blob/main/cli/README.md
 
 <!-- GitHub CI / Coverage -->
 
