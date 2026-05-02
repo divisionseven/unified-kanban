@@ -3,7 +3,7 @@
 
 # Unified Kanban
 
-### One kanban format for Obsidian and Visual Studio Code
+### One Kanban Format for Obsidian and Visual Studio Code
 
 [![TypeScript][typescript-badge]][github-repo-link]
 [![React][react-badge]][github-repo-link]
@@ -13,8 +13,7 @@
 [![CI][ci-badge]][github-ci-badge-link]
 
 [![VS Code Marketplace][vscode-marketplace-badge]][vscode-marketplace-link]
-[![VS Code Version][vscode-version-badge]][vscode-link]
-[![Open VSX Downloads][ovsx-downloads-badge]][ovsx-link]
+[![Open VSX Downloads][ovsx-downloads-header-badge]][ovsx-link]
 
 </div>
 
@@ -42,7 +41,9 @@ One simple kanban format, now **unified**.
 
 ## Installation
 
-### Install from the VS Code Marketplace:
+### Install from the Visual Studio Code Marketplace:
+
+_VS Code Version 1.85+_
 
 1. Open the **Extensions** sidebar (`Ctrl`+`Shift`+`X` / `Cmd`+`Shift`+`X`)
 2. Search for **Unified Kanban**
@@ -279,7 +280,7 @@ See [CHANGELOG.md][changelog-link] for the full release history and version note
 
 [![GitHub issues][github-issues-badge]][github-issues-link]
 [![GitHub discussions][github-discussions-badge]][github-discussions-link]
-[![Open VSX Downloads][ovsx-downloads-badge]][ovsx-link]
+[![Open VSX Downloads][ovsx-downloads-body-badge]][ovsx-link]
 
 - [Report issues][github-issues-link]
 - [Join discussions][github-discussions-link]
@@ -318,10 +319,11 @@ Unified Kanban is distributed under the [MIT License][license-link]
 [release-version-badge]: https://img.shields.io/github/v/release/divisionseven/unified-kanban?&style=plastic&logo=github&color=8A2BE2&logoColor=white&label=Release
 [vscode-marketplace-badge]: https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code
 [vscode-version-badge]: https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic
-[ovsx-downloads-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Downloads
+[ovsx-downloads-header-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Open%20VSX%20Downloads
 
 <!-- Body Badges -->
 
+[ovsx-downloads-body-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Downloads
 [github-issues-badge]: https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Issues
 [github-discussions-badge]: https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Discussions
 

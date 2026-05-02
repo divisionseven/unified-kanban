@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed:
+
+- Modify README installation instructions to include OVSX section & downloads badge addition to header/body
+
 ---
 
 ## [0.7.3] - 2026-04-30
