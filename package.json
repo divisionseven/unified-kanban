@@ -376,7 +376,7 @@
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "standard-version": "^9.5.0",
-    "typescript": "^5.7.3",
+    "typescript": "^6.0.3",
     "vite": "^7.3.2",
     "vitest": "^4.1.2"
   },
