@@ -278,6 +278,8 @@ See [CHANGELOG.md][changelog-link] for the full release history and version note
 
 ## Support & Community
 
+### Join the Conversation
+
 [![GitHub issues][github-issues-badge]][github-issues-link]
 [![GitHub discussions][github-discussions-badge]][github-discussions-link]
 [![Open VSX Downloads][ovsx-downloads-body-badge]][ovsx-link]
@@ -286,6 +288,19 @@ See [CHANGELOG.md][changelog-link] for the full release history and version note
 - [Join discussions][github-discussions-link]
 - [Review on Open VSX][ovsx-link]
 - [Review on VS Code Marketplace][vscode-marketplace-link]
+
+### Unified Kanban Sponsors
+
+[![GitHub Sponsors][gh-sponsors-badge-badge]][gh-sponsors-badge-link]
+[![BuyMeACoffee][buymeacoffee-badge-badge]][buymeacoffee-badge-link]
+
+> [!NOTE]
+> Unified Kanban is free and open-source software, built and maintained independently.
+> If the tool provides value to your workflow or organization, please consider supporting
+> its continued development, and starring the project to help others find it as well.
+>
+> Your support helps fund ongoing maintenance, feature development, and infrastructure
+> costs — keeping the project available to everyone at no cost. Thank you.
 
 ## Contributing
 
@@ -311,21 +326,25 @@ Unified Kanban is distributed under the [MIT License][license-link]
 
 <!-- Header Badges -->
 
-[typescript-badge]: https://img.shields.io/badge/TypeScript-5.x-8A2BE2?style=plastic&logo=typescript&logoColor=white
-[react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?style=plastic&logo=react&logoColor=white
-[license-badge]: https://img.shields.io/badge/License-MIT-blue?style=plastic&logo=open-source-initiative&color=8A2BE2&logoColor=white&label=License
-[codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&style=plastic&color=8A2BE2&logoColor=white&label=Coverage
-[ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&style=plastic&color=8A2BE2&logoColor=white&label=Build
-[release-version-badge]: https://img.shields.io/github/v/release/divisionseven/unified-kanban?&style=plastic&logo=github&color=8A2BE2&logoColor=white&label=Release
-[vscode-marketplace-badge]: https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?style=plastic&logo=visual-studio-code
-[vscode-version-badge]: https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?style=plastic
-[ovsx-downloads-header-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Open%20VSX%20Downloads
+[typescript-badge]: https://img.shields.io/badge/TypeScript-5.x-8A2BE2?logo=typescript&logoColor=white
+[react-badge]: https://img.shields.io/badge/React-18.x-8A2BE2?logo=react&logoColor=white
+[license-badge]: https://img.shields.io/badge/License-MIT-blue?logo=open-source-initiative&color=8A2BE2&logoColor=white&label=License
+[codecov-badge]: https://img.shields.io/codecov/c/github/divisionseven/unified-kanban?logo=codecov&color=8A2BE2&logoColor=white&label=Coverage
+[ci-badge]: https://img.shields.io/github/actions/workflow/status/divisionseven/unified-kanban/ci.yml?branch=main&logo=github&color=8A2BE2&logoColor=white&label=Build
+[release-version-badge]: https://img.shields.io/github/v/release/divisionseven/unified-kanban?&logo=github&color=8A2BE2&logoColor=white&label=Release
+[vscode-marketplace-badge]: https://img.shields.io/badge/VS%20Code%20Extension-Unified%20Kanban-8A2BE2?logo=visual-studio-code
+[vscode-version-badge]: https://img.shields.io/badge/VS%20Code%20Version-1.85+-8A2BE2?
+[ovsx-downloads-header-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&label=Open%20VSX%20Downloads
 
 <!-- Body Badges -->
 
-[ovsx-downloads-body-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Downloads
-[github-issues-badge]: https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Issues
-[github-discussions-badge]: https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&style=plastic&label=Discussions
+[gh-sponsors-badge-badge]: https://img.shields.io/badge/GitHub%20Sponsors-Donate-green?logo=githubsponsors
+[buymeacoffee-badge-badge]: https://img.shields.io/badge/BuyMeACoffee-Donate-green?logo=buymeacoffee
+[gh-sponsors-badge-link]: https://github.com/sponsors/divisionseven
+[buymeacoffee-badge-link]:https://buymeacoffee.com/divisionseven
+[ovsx-downloads-body-badge]: https://img.shields.io/open-vsx/dt/divisionseven/unified-kanban?color=8A2BE2&label=Downloads
+[github-issues-badge]: https://img.shields.io/github/issues/divisionseven/unified-kanban?color=8A2BE2&label=Issues
+[github-discussions-badge]: https://img.shields.io/github/discussions/divisionseven/unified-kanban?color=8A2BE2&label=Discussions
 
 <!-- VS Code -->
 
