@@ -5,8 +5,30 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    ignore:
+      # @types/vscode must not be newer than engines.vscode, or vsce package fails.
+      # Bump it together with engines.vscode, by hand.
+      - dependency-name: "@types/vscode"
+    groups:
+      # One PR for all minor and patch updates; majors still get their own PRs.
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
   - package-ecosystem: npm
     directory: /webview-ui
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    groups:
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+      # react and react-dom (and their types) must move together.
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"

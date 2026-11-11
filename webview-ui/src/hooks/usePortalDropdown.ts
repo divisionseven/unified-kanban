@@ -8,7 +8,7 @@ interface DropdownPosition {
 interface UsePortalDropdownReturn {
   isOpen: boolean;
   position: DropdownPosition;
-  triggerRef: React.RefObject<HTMLButtonElement>;
+  triggerRef: React.RefObject<HTMLButtonElement | null>;
   open: (e: React.MouseEvent) => void;
   close: () => void;
 }
