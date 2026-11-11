@@ -379,7 +379,7 @@
     "standard-version": "^9.5.0",
     "typescript": "^6.0.3",
     "vite": "^8.3.8",
-    "vitest": "^4.1.12"
+    "vitest": "^5.1.0"
   },
   "dependencies": {
     "mdast-util-from-markdown": "^2.0.0",
