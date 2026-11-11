@@ -362,14 +362,14 @@
     "@commitlint/config-conventional": "^20.5.0",
     "@types/mdast": "^4.0.4",
     "@types/node": "^25.5.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^8.58.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.59.0",
     "@vitejs/plugin-react": "^6.3.0",
     "@vitest/coverage-v8": "^4.1.12",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.2",
     "eslint": "^10.14.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -382,11 +382,11 @@
     "vitest": "^4.1.12"
   },
   "dependencies": {
-    "mdast-util-from-markdown": "^2.0.0",
+    "mdast-util-from-markdown": "^2.1.0",
     "mdast-util-frontmatter": "^2.0.0",
     "mdast-util-to-string": "^4.0.0",
     "micromark-extension-frontmatter": "^2.0.0",
-    "unist-util-visit": "^5.1.0"
+    "unist-util-visit": "^5.2.0"
   },
   "overrides": {
     "anymatch": "^3.1.0",
