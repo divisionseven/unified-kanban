@@ -291,11 +291,7 @@ export function useBoardState(): BoardStateHook {
           card.rawText = card.rawText.replace(/^- \[ \]/, "- [x]");
         }
 
-        toColumn.cards.splice(
-          fromColumnId === toColumnId && newIndex > cardIndex ? newIndex - 1 : newIndex,
-          0,
-          card,
-        );
+        toColumn.cards.splice(newIndex, 0, card);
 
         return updated;
       });

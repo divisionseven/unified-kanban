@@ -156,7 +156,7 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
     _token: vscode.CancellationToken,
   ): Promise<void> {
     // sandbox is supported in VS Code 1.86+ but types may not be updated yet
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     webviewPanel.webview.options = {
       enableScripts: true,
       localResourceRoots: [vscode.Uri.joinPath(this.context.extensionUri, "dist", "webview")],
@@ -288,15 +288,11 @@ export class KanbanEditorProvider implements vscode.CustomTextEditorProvider {
             }
 
             // Insert at target position
-            if (fromColumnId === toColumnId && newIndex > cardIndex) {
-              toColumn.cards.splice(newIndex - 1, 0, card);
-            } else {
-              toColumn.cards.splice(newIndex, 0, card);
-            }
+            toColumn.cards.splice(newIndex, 0, card);
 
-            // Clear lineIndex so the serializer treats this as a new card
-            // in the target column (its old lineIndex is from the source column)
-            card.lineIndex = undefined;
+            // Clear lineIndex on every card in the target column so the
+            // serializer writes them in array order, keeping the drop position
+            for (const c of toColumn.cards) c.lineIndex = undefined;
 
             // Serialize and apply
             const newText = serialize(board);
