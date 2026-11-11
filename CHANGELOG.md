@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed:
 
 - Modify README installation instructions to include OVSX section & downloads badge addition to header/body
+- Update dependencies: React 19, react-markdown 10, lucide-react 1.x, @dnd-kit/sortable 10, TypeScript 6, Vite 8 and @vitejs/plugin-react 6 (root), plus minor and patch updates to dompurify, eslint, prettier, vitest and jsdom
+- Replace the deprecated `mdast` package with `@types/mdast`, which is all the parser used it for
+- Group Dependabot minor and patch updates into one PR, keep React packages together, and stop bumping `@types/vscode` past `engines.vscode`
 
 ### Fixed
 
