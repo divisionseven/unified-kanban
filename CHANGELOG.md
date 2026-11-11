@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Modify README installation instructions to include OVSX section & downloads badge addition to header/body
 
+### Fixed
+
+- Fix drag and drop saving the dropped card at the end of its lane instead of where it was dropped, and cards moved down within a lane landing too high
+
 ---
 
 ## [0.7.3] - 2026-04-30

@@ -594,6 +594,35 @@ describe("useBoardState — card operations", () => {
 
       expect(result.current.board?.columns[1]?.cards[0]?.checked).toBe(true);
     });
+
+    it("moves card to newIndex within the same column", () => {
+      const { result } = renderHook(() => useBoardState());
+
+      act(() => {
+        const initialBoard = createTestBoard({
+          columns: [
+            createTestColumn({
+              id: "todo",
+              cards: ["card-1", "card-2", "card-3"].map((id) => createTestCard({ id })),
+            }),
+          ],
+        });
+        const event = new MessageEvent("message", {
+          data: { type: "INIT", board: initialBoard },
+        });
+        window.dispatchEvent(event);
+      });
+
+      act(() => {
+        result.current.applyMoveCard("card-1", "todo", "todo", 2);
+      });
+
+      expect(result.current.board?.columns[0]?.cards.map((c) => c.id)).toEqual([
+        "card-2",
+        "card-3",
+        "card-1",
+      ]);
+    });
   });
 
   describe("applyAddBlockId", () => {

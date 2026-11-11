@@ -135,12 +135,9 @@ export function App(): React.ReactElement | null {
         const fromCol = activeData.columnId;
         const toCol = overData.columnId;
         const cardId = activeData.cardId;
-        let newIndex = overData.index;
-        // Same-column reorder: adjust for post-removal index shift
-        if (fromCol === toCol && newIndex > activeData.index) {
-          newIndex--;
-        }
-        applyMoveCard(cardId, fromCol, toCol, newIndex);
+        // overData.index is the card's final index: within a column, the sortable
+        // list already shows the dragged card there, so it needs no adjustment
+        applyMoveCard(cardId, fromCol, toCol, overData.index);
       } else if (activeData?.type === "card" && overData?.type === "column") {
         const toCol = overData.columnId;
         const fromCol = activeData.columnId;
