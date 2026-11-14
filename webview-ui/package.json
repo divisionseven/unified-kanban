@@ -34,7 +34,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
     "jsdom": "^29.1.1",
-    "markdown-it": "^14.1.1",
+    "markdown-it": "^15.0.3",
     "markdown-it-task-lists": "^2.1.1",
     "marked": "^18.0.3",
     "rehype-stringify": "^10.0.1",
